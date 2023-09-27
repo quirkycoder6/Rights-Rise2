@@ -11,11 +11,11 @@ const Module = () => {
       <h1>Navigate to quiz</h1>
       {isAuth && <Link to="/lawquest/module/quiz" className="btn btn-primary">Quiz</Link>}
 
-      <h1>Navigate to Crossword</h1>
-      {isAuth && <Link to="/lawquest/module/crossword" className="btn btn-primary">Crossword</Link>}
+      <h1>Navigate to Number guess</h1>
+      {isAuth && <Link to="/lawquest/module/numberguess" className="btn btn-primary">Number Guess</Link>}
 
-      <h1>Navigate to BoggleGame</h1>
-      {isAuth && <Link to="/lawquest/module/bogglegame" className="btn btn-primary">BoggleGame</Link>}
+      <h1>Navigate to Word Guess</h1>
+      {isAuth && <Link to="/lawquest/module/wordguess" className="btn btn-primary">Word Guess</Link>}
 
       <h1>Navigate to Jigsaw Puzzle</h1>
       {isAuth && <Link to="/lawquest/module/jigsaw" className="btn btn-primary">Jigsaw Puzzle</Link>}

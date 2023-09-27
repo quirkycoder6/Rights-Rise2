@@ -6,12 +6,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import RegisterPage from "./pages/login";
 import Quiz from "./quiz/Quiz";
-import CrossWord from './crossword/CrossWord';
-import BoggleGame from './bogglegame/BoggleGame';
 import Jigsaw from './jigsawpuzzle/Jigsaw';
 import UserProfile from './profile/main';
 import LeaderBoard from "./leaderboard/LeaderBoard";
 import More from "./more/More";
+import NumberGuess from "./numberguess/NumberGuess";
+import WordGuess from "./wordguesser/WordGuess";
 
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -46,12 +46,12 @@ function App() {
             element={isAuth ? <Quiz /> : <Navigate to="/" />}
           />
            <Route
-            path="/lawquest/module/crossword"
-            element={isAuth ? <CrossWord /> : <Navigate to="/" />}
+            path="/lawquest/module/numberguess"
+            element={isAuth ? <NumberGuess /> : <Navigate to="/" />}
           />
           <Route
-            path="/lawquest/module/bogglegame"
-            element={isAuth ? <BoggleGame /> : <Navigate to="/" />}
+            path="/lawquest/module/wordguess"
+            element={isAuth ? <WordGuess /> : <Navigate to="/" />}
           />
           <Route
             path="/lawquest/module/jigsaw"
