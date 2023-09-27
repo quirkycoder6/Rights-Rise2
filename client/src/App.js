@@ -8,7 +8,8 @@ import RegisterPage from "./pages/login";
 import Quiz from "./quiz/Quiz";
 import CrossWord from './crossword/CrossWord';
 import BoggleGame from './bogglegame/BoggleGame';
-import Jigsaw from './jigsawpuzzle/Jigsaw'
+import Jigsaw from './jigsawpuzzle/Jigsaw';
+import UserProfile from './profile/main'
 
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -21,6 +22,10 @@ function App() {
           <Route
             path="/lawquest"
             element={isAuth ? <Dashboard /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/lawquest/profile"
+            element={isAuth ? <UserProfile /> : <Navigate to="/" />}
           />
           <Route
             path="/lawquest/module"

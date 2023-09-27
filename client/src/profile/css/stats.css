@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Poppins:wght@600&display=swap');
+.cards{
+    width: 265px;
+    height: 220px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    /* background-color: #F8F0E5; */
+    font-size: 25px;
+}
+.stats{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.card1{
+    background: linear-gradient(0deg, rgb(255, 255, 101), rgb(255, 110, 110));
+}
+.card2{
+    background: linear-gradient(0deg, rgb(102, 248, 255), rgb(246, 156, 255));
+}
+.card3{
+    background: linear-gradient(0deg, rgb(191, 164, 252), rgb(118, 154, 206));
+}
+.card4{
+    background: linear-gradient(0deg, rgb(164, 252, 233), rgb(71, 160, 230));
+}

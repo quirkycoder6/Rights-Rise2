@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Poppins:wght@600&display=swap');
+.userImg{
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    position: relative;
+    top:4px;
+}
+.userPic{
+    float: right;
+}
+.info{
+    font-family: 'Poppins', sans-serif;
+    float: left;
+}
+.userProfile{
+    margin-top: 25px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    height: 130px;
+    width: 550px;
+    padding: 16px;
+    background:linear-gradient(0deg, rgb(98, 0, 161), rgb(155, 140, 234));
+}
+.userSec{
+    display: inline-block;
+    flex-direction: row;
+    gap: 1.5rem;
+    width: 100%;
+}
