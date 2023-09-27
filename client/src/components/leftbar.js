@@ -14,6 +14,9 @@ const Leftbar = () => {
   const handleHomeClick = () => {
     navigate('/lawquest')
   }
+  const handleMoreClick = () => {
+    navigate('/lawquest/more')
+  }
 
   return (
     <div className="flex md:flex-col gap-3">
@@ -41,7 +44,7 @@ const Leftbar = () => {
           </h1>
         </div>
       </div>
-      <div className="flex lg:flex-col  border-2 rounded-2xl bg-blue-100">
+      <div onClick={handleMoreClick}  style={{ cursor: "pointer" }} className="flex lg:flex-col  border-2 rounded-2xl bg-blue-100">
         <div className="flex items-center py-1 md:py-2 px-1 md:px-2 gap-3">
           <MoreSvg />
           <h1 className="text-sm font-bold hidden lg:block text-blue-400">
