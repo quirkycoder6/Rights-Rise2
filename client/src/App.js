@@ -9,7 +9,8 @@ import Quiz from "./quiz/Quiz";
 import CrossWord from './crossword/CrossWord';
 import BoggleGame from './bogglegame/BoggleGame';
 import Jigsaw from './jigsawpuzzle/Jigsaw';
-import UserProfile from './profile/main'
+import UserProfile from './profile/main';
+import LeaderBoard from "./leaderboard/LeaderBoard";
 
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -26,6 +27,10 @@ function App() {
           <Route
             path="/lawquest/profile"
             element={isAuth ? <UserProfile /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/lawquest/leaderboard"
+            element={isAuth ? <LeaderBoard /> : <Navigate to="/" />}
           />
           <Route
             path="/lawquest/module"
