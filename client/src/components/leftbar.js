@@ -11,10 +11,13 @@ const Leftbar = () => {
   const handleLeaderboardClick = () => {
     navigate('/lawquest/leaderboard')
   }
+  const handleHomeClick = () => {
+    navigate('/lawquest')
+  }
 
   return (
     <div className="flex md:flex-col gap-3">
-      <div className="flex lg:flex-col border-blue-500 border-2 rounded-2xl bg-blue-100">
+      <div onClick={handleHomeClick}  style={{ cursor: "pointer" }} className="flex lg:flex-col border-blue-500 border-2 rounded-2xl bg-blue-100">
         <div className="flex items-center py-1 md:py-2 px-1 md:px-2 gap-3">
           <HomeSvg />
           <h1 className="text-sm font-bold hidden lg:block text-blue-400">
