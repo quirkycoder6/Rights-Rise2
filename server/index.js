@@ -7,6 +7,7 @@ import NumberGuesser from "./models/Number.js";
 import Quiz from "./models/Quiz.js";
 import Scramble from "./models/Scramble.js";
 import WordGuesser from "./models/WordGuesser.js"; 
+import { verifyToken } from "./middleware/auth.js";
  
 dotenv.config();
 const app = express();
@@ -15,7 +16,7 @@ app.use(cors());
 
 app.use("/auth", authRoutes);
  
-app.post("/numberguesser", async (req, res) => {
+app.post("/numberguesser", verifyToken, async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
     const newGame = new NumberGuesser({
@@ -31,7 +32,7 @@ app.post("/numberguesser", async (req, res) => {
   }
 });
 
-app.post("/quiz", async (req, res) => {
+app.post("/quiz", verifyToken, async (req, res) => {
   try {
     const { userId, question, options, correct } = req.body;
     const newGame = new Quiz({
@@ -48,7 +49,7 @@ app.post("/quiz", async (req, res) => {
   }
 });
 
-app.post("/scramble", async (req, res) => {
+app.post("/scramble", verifyToken, async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
     const newGame = new Scramble({
@@ -64,7 +65,7 @@ app.post("/scramble", async (req, res) => {
   }
 });
 
-app.post("/wordguesser", async (req, res) => {
+app.post("/wordguesser", verifyToken, async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
     const newGame = new WordGuesser({
