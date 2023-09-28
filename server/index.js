@@ -6,22 +6,27 @@ import authRoutes from "./routes/auth.js";
 import NumberGuesser from "./models/Number.js";
 import Quiz from "./models/Quiz.js";
 import Scramble from "./models/Scramble.js";
-import WordGuesser from "./models/WordGuesser.js"; 
+import WordGuesser from "./models/WordGuesser.js";
 import { verifyToken } from "./middleware/auth.js";
- 
+
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors()); 
-
+app.use(cors());
 
 //LOGIN && REGISTER
 app.use("/auth", authRoutes);
- 
+
 //GAMES ROUTES
 app.post("/numberguesser", async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
+    if (!userId || !question || !correct) {
+      return res.status(400).json({ error: "Not enough details" });
+    }
+    console.log(userId);
+    console.log(question);
+    console.log(correct);
     const newGame = new NumberGuesser({
       userId,
       question,
