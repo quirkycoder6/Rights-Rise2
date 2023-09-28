@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './style.css';
+import './number.css';
 
 const App = () => {
   const [answer] = useState(12);

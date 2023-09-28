@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+
 /* -------------------------------------------------------------------------- */
 /*                                REGISTER USER                               */
 /* -------------------------------------------------------------------------- */
@@ -51,5 +52,3 @@ export const login = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
-
