@@ -49,6 +49,7 @@ const App = () => {
   };
 
   return (
+    <div className='main'>
     <div className="wrapper">
       <header>Article number ____ is Right to Equality </header>
       <p className="guess" style={{ color: guessColor }}>
@@ -66,6 +67,7 @@ const App = () => {
       <p>
         You have <span className="chances">{chance}</span> chances
       </p>
+    </div>
     </div>
   );
 };
