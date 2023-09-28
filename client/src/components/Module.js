@@ -20,6 +20,9 @@ const Module = () => {
       <h1>Navigate to Word Guess</h1>
       {isAuth && <Link to="/lawquest/module/wordguess" className="btn btn-primary">Word Guess</Link>}
 
+      <h1>Navigate to Word Scramble Maker</h1>
+      {isAuth && <Link to="/lawquest/module/wordscramblemaker" className="btn btn-primary">Word Scramble Maker</Link>}
+
       <h1>Navigate to Jigsaw Puzzle</h1>
       {isAuth && <Link to="/lawquest/module/jigsaw" className="btn btn-primary">Jigsaw Puzzle</Link>}
     </div>
