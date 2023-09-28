@@ -1,13 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import React, { useState } from 'react';
 import Leftbar from "../components/leftbar";
 import Dailyquest from "../components/dailyquest";
 import Navbar from "../components/navbar";
+import QuizGame from "../quiz/Quiz";
+import NumberGuesser from "../numberguess/NumberGuess";
+import NumberGuessMaker from "../numberguess/NumberGuessMaker";
+import WordGuesser from "../wordguesser/WordGuess";
+import JigsawPuzzle from "../jigsawpuzzle/Jigsaw";
 
 const Module = () => {
-
-  const isAuth = Boolean(useSelector((state) => state.token));
+  const [currentGame, setCurrentGame] = useState(null);
 
   return (
     <div className="flex-col flex">
@@ -20,23 +22,24 @@ const Module = () => {
         </div>
         <div className="flex justify-center lg:justify-around sm:gap-3 flex-grow">
           <div className="flex items-center flex-col gap-4">
-            {isAuth && <Link to="/lawquest/module/quiz" className="btn btn-primary">Quiz Game</Link>}
-            {isAuth && <Link to="/lawquest/module/numberguess" className="btn btn-primary">Number Guesser</Link>}
-            {isAuth && <Link to="/lawquest/module/numberguessmaker" className="btn btn-primary">Number Guess Maker</Link>}
-            {isAuth && <Link to="/lawquest/module/wordguess" className="btn btn-primary">Word Guesser</Link>}
-            {isAuth && <Link to="/lawquest/module/jigsaw" className="btn btn-primary">Jigsaw Puzzle</Link>}
-            {isAuth && <Link to="/lawquest/module/wordscramblemaker" className="btn btn-primary">Word Scramble Maker</Link>}
+            <button onClick={() => setCurrentGame('quiz')} className="btn btn-primary">Quiz Game</button>
+            <button onClick={() => setCurrentGame('numberguesser')} className="btn btn-primary">Number Guesser</button>
+            <button onClick={() => setCurrentGame('numberguessmaker')} className="btn btn-primary">Number Guess Maker</button>
+            <button onClick={() => setCurrentGame('wordguesser')} className="btn btn-primary">Word Guesser</button>
+            <button onClick={() => setCurrentGame('jigsaw')} className="btn btn-primary">Jigsaw Puzzle</button>
           </div>
           <div className="flex items-center flex-col gap-5">
-            <Dailyquest />
-            <Dailyquest />
-            <Dailyquest />
+            {currentGame === 'quiz' && <QuizGame />}
+            {currentGame === 'numberguesser' && <NumberGuesser />}
+            {currentGame === 'numberguessmaker' && <NumberGuessMaker />}
+            {currentGame === 'wordguesser' && <WordGuesser />}
+            {currentGame === 'jigsaw' && <JigsawPuzzle />}
           </div>
         </div>
       </div>
       <div className="fixed bottom-0 w-full mb-3 md:hidden bg-white border-gray-300">
         <div className="flex justify-around items-center">
-          <Leftbar />
+          <Dailyquest />
         </div>
       </div>
     </div>
