@@ -18,9 +18,8 @@ app.use(cors());
 //LOGIN && REGISTER
 app.use("/auth", authRoutes);
  
-
 //GAMES ROUTES
-app.post("/numberguesser", verifyToken, async (req, res) => {
+app.post("/numberguesser", async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
     const newGame = new NumberGuesser({
