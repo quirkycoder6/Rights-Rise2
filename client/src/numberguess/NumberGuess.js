@@ -63,12 +63,13 @@ const App = () => {
         </p>
         <div className="input-field">
           <input
+          id='num'
             type="number"
             value={inputValue}
             onChange={handleInputChange}
             disabled={inputDisabled}
           />
-          <button onClick={handleCheckClick}>{buttonLabel}</button>
+          <button id='butnum' onClick={handleCheckClick}>{buttonLabel}</button>
         </div>
         <p>
           You have <span className="chances">{chance}</span> chances

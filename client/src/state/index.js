@@ -5,7 +5,6 @@ const initialState = {
   user: null,
   // jwt
   token: null,
-
 };
 
 export const authSlice = createSlice({
