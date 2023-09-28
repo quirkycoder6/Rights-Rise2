@@ -96,23 +96,13 @@ useEffect(() => {
   return (
     <div className="container">
       <h2>Create a Number Guesser Game</h2>
-      <button onClick={main}>Generate</button>
+      <button onClick={main}>Generate (use responsibly due to limited open ai calls)</button>
       {genQuestion.length > 0 && genAns.length ? (
         <QuestionAnswerList genQuestion={genQuestion} genAns={genAns} />
       ) : (
         <></>
       )}
       <form onSubmit={handleSubmit}>
-        {/* <div>
-          <label htmlFor="userId">User ID:</label>
-          <input
-            type="text"
-            id="userId"
-            name="userId"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
-          />
-        </div> */}
         <div>
           <label htmlFor="question">Question:</label>
           <input
