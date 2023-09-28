@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css';
 
 const App = () => {
@@ -9,6 +9,16 @@ const App = () => {
   const [guessColor, setGuessColor] = useState('');
   const [buttonLabel, setButtonLabel] = useState('Check');
   const [inputDisabled, setInputDisabled] = useState(false);
+  const [score, setScore] = useState(0); 
+
+  useEffect(() => {
+    if (chance === 0) {
+      setButtonLabel('Replay');
+      setInputDisabled(true);
+      setGuessText('You lost the game');
+      setGuessColor('#DE0611');
+    }
+  }, [chance]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -22,6 +32,7 @@ const App = () => {
       setInputDisabled(true);
       setButtonLabel('Replay');
       setGuessColor('#333');
+      setScore(chance);
     } else if (parseInt(inputValue, 10) > answer && parseInt(inputValue, 10) < 100) {
       setGuessText('Your guess is high');
       setChance(updatedChance);
@@ -36,13 +47,6 @@ const App = () => {
       setGuessColor('#DE0611');
     }
 
-    if (updatedChance === 0) {
-      setButtonLabel('Replay');
-      setInputDisabled(true);
-      setGuessText('You lost the game');
-      setGuessColor('#DE0611');
-    }
-
     if (updatedChance < 0) {
       window.location.reload();
     }
@@ -50,24 +54,27 @@ const App = () => {
 
   return (
     <div className='main'>
-    <div className="wrapper">
-      <header>Article number ____ is Right to Equality </header>
-      <p className="guess" style={{ color: guessColor }}>
-        {guessText}
-      </p>
-      <div className="input-field">
-        <input
-          type="number"
-          value={inputValue}
-          onChange={handleInputChange}
-          disabled={inputDisabled}
-        />
-        <button onClick={handleCheckClick}>{buttonLabel}</button>
+      <div className="wrapper">
+        <header>Article number ____ is Right to Equality </header>
+        <p className="guess" style={{ color: guessColor }}>
+          {guessText}
+        </p>
+        <div className="input-field">
+          <input
+            type="number"
+            value={inputValue}
+            onChange={handleInputChange}
+            disabled={inputDisabled}
+          />
+          <button onClick={handleCheckClick}>{buttonLabel}</button>
+        </div>
+        <p>
+          You have <span className="chances">{chance}</span> chances
+        </p>
+        <p>
+          Score: {score}
+        </p>
       </div>
-      <p>
-        You have <span className="chances">{chance}</span> chances
-      </p>
-    </div>
     </div>
   );
 };
