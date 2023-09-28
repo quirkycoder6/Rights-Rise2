@@ -7,6 +7,7 @@ import NumberGuesser from "./models/Number.js";
 import Quiz from "./models/Quiz.js";
 import Scramble from "./models/Scramble.js";
 import WordGuesser from "./models/WordGuesser.js"; 
+import { verifyToken } from "./middleware/auth.js";
  
 dotenv.config();
 const app = express();
@@ -17,7 +18,6 @@ app.use(cors());
 //LOGIN && REGISTER
 app.use("/auth", authRoutes);
  
-
 //GAMES ROUTES
 app.post("/numberguesser", async (req, res) => {
   try {
@@ -83,11 +83,6 @@ app.post("/wordguesser", async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 });
-
-
-
-
-
 
 const PORT = process.env.PORT || 6000;
 mongoose
