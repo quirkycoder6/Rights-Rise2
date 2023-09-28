@@ -13,6 +13,7 @@ import More from "./more/More";
 import NumberGuess from "./numberguess/NumberGuess";
 import WordGuess from "./wordguesser/WordGuess";
 import WordScrambleGame from "./wordScramble/WordScrambleGame";
+import NumberGuessMaker from "./numberguess/NumberGuessMaker";
 
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -61,6 +62,10 @@ function App() {
           <Route
             path="/lawquest/module/wordscramble"
             element={isAuth ? < WordScrambleGame/> : <Navigate to="/" />}
+          />
+          <Route
+            path="/lawquest/module/numberguessmaker"
+            element={isAuth ? < NumberGuessMaker/> : <Navigate to="/" />}
           />
         </Routes>
       </BrowserRouter>

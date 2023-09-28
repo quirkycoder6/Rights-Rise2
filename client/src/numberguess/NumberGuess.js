@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './number.css';
 
 const App = () => {
+
+  
   const [answer] = useState(12);
   const [chance, setChance] = useState(5);
   const [inputValue, setInputValue] = useState('');

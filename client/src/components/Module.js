@@ -14,6 +14,9 @@ const Module = () => {
       <h1>Navigate to Number guess</h1>
       {isAuth && <Link to="/lawquest/module/numberguess" className="btn btn-primary">Number Guess</Link>}
 
+      <h1>Navigate to Number guess Maker</h1>
+      {isAuth && <Link to="/lawquest/module/numberguessmaker" className="btn btn-primary">Number Guess</Link>}
+
       <h1>Navigate to Word Guess</h1>
       {isAuth && <Link to="/lawquest/module/wordguess" className="btn btn-primary">Word Guess</Link>}
 
