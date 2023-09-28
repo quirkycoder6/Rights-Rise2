@@ -13,8 +13,12 @@ const app = express();
 app.use(express.json());
 app.use(cors()); 
 
+
+//LOGIN && REGISTER
 app.use("/auth", authRoutes);
  
+
+//GAMES ROUTES
 app.post("/numberguesser", async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
