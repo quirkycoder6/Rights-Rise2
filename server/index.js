@@ -81,11 +81,6 @@ app.post("/wordguesser", verifyToken, async (req, res) => {
   }
 });
 
-
-
-
-
-
 const PORT = process.env.PORT || 6000;
 mongoose
   .connect(process.env.MONGO_URL, {
