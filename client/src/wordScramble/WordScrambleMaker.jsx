@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import '../numberguess/makerstyle.css'
+import { useSelector } from "react-redux";
 
 const WordScrambleMaker = () => {
-  const [userId, setUserId] = useState('');
+//   const [userId, setUserId] = useState('');
   const [question, setQuestion] = useState('');
   const [correct, setCorrect] = useState('');
   const [message, setMessage] = useState('');
+  const userId = useSelector((state) => state.user._id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const WordScrambleMaker = () => {
 
       if (response.ok) {
         setMessage('Game created successfully.');
-        setUserId('');
+        // setUserId('');
         setQuestion('');
         setCorrect('');
       } else {
@@ -37,7 +39,7 @@ const WordScrambleMaker = () => {
     <div className="container">
       <h2>Create a Word Scramble Game</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        {/* <div>
           <label htmlFor="userId">User ID:</label>
           <input
             type="text"
@@ -46,7 +48,7 @@ const WordScrambleMaker = () => {
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="question">Question:</label>
           <input

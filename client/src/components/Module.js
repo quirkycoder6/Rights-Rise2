@@ -1,10 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import Leftbar from "../components/leftbar";
+import Dailyquest from "../components/dailyquest";
+import Navbar from "../components/navbar";
 
 const Module = () => {
 
-    const isAuth = Boolean(useSelector((state) => state.token));
+  const isAuth = Boolean(useSelector((state) => state.token));
 
   return (
     <div className="App">
