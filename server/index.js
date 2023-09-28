@@ -14,8 +14,12 @@ const app = express();
 app.use(express.json());
 app.use(cors()); 
 
+
+//LOGIN && REGISTER
 app.use("/auth", authRoutes);
  
+
+//GAMES ROUTES
 app.post("/numberguesser", verifyToken, async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
@@ -32,7 +36,7 @@ app.post("/numberguesser", verifyToken, async (req, res) => {
   }
 });
 
-app.post("/quiz", verifyToken, async (req, res) => {
+app.post("/quiz", async (req, res) => {
   try {
     const { userId, question, options, correct } = req.body;
     const newGame = new Quiz({
@@ -49,7 +53,7 @@ app.post("/quiz", verifyToken, async (req, res) => {
   }
 });
 
-app.post("/scramble", verifyToken, async (req, res) => {
+app.post("/scramble", async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
     const newGame = new Scramble({
@@ -65,7 +69,7 @@ app.post("/scramble", verifyToken, async (req, res) => {
   }
 });
 
-app.post("/wordguesser", verifyToken, async (req, res) => {
+app.post("/wordguesser", async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
     const newGame = new WordGuesser({
