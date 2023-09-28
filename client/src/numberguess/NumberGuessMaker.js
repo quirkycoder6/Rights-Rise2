@@ -96,7 +96,10 @@ useEffect(() => {
   return (
     <div className="container">
       <h2>Create a Number Guesser Game</h2>
-      <button onClick={main}>Generate (use responsibly due to limited open ai calls)</button>
+      <button onClick={main} className="bg-blue-700 p-3">
+        Generate
+      </button>
+      <p className="text-red-600 font-bold">Use responsibly due to limited open ai calls. Question generation is slow due to api. Wait for some time for response.</p>
       {genQuestion.length > 0 && genAns.length ? (
         <QuestionAnswerList genQuestion={genQuestion} genAns={genAns} />
       ) : (
