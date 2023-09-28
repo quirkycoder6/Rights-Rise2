@@ -17,7 +17,9 @@ const handleSubmit = async (e, question, correct) => {
       },
       body: JSON.stringify({ userId, question, correct }),
     });
-
+    if (response.ok) {
+        alert("Submitted")
+    }
     // Handle the response as needed
   } catch (error) {
     console.error("Error:", error);
