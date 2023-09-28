@@ -1,9 +1,8 @@
-
 import React, { Component } from 'react';
 import './WordScrambleGame.css'; 
 import words from './data';
 
-class WordScrambleGame extends Component {
+export class WordScrambleGame extends Component {
   constructor(props) {
     super(props);
 
