@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   // jwt
   token: null,
+
 };
 
 export const authSlice = createSlice({
@@ -18,7 +19,7 @@ export const authSlice = createSlice({
     setLogout: (state, action) => {
       state.user = null;
       state.token = null;
-    },
+    }
   },
 });
 

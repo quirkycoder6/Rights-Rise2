@@ -1,9 +1,10 @@
+const app = express();
 import NumberGuesser from "../models/NumberGuesser";
 import Quiz from "../models/Quiz";
 import Scramble from "../models/Scramble";
 import WordGuesser from "../models/WordGuesser";
 
-export const numberguesser = async (req, res) => {
+app.post('/numberguesser' , async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
     const newGame = new NumberGuesser({
@@ -17,9 +18,9 @@ export const numberguesser = async (req, res) => {
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
-};
+});
 
-export const quiz = async (req, res) => {
+app.post('/quiz', async (req, res) => {
   try {
     const { userId, question, options, correct } = req.body;
     const newGame = new Quiz({
@@ -34,9 +35,9 @@ export const quiz = async (req, res) => {
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
-};
+})
 
-export const scramble = async (req, res) => {
+app.post( '/scramble' , async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
     const newGame = new Scramble({
@@ -50,9 +51,9 @@ export const scramble = async (req, res) => {
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
-};
+})
 
-export const wordguesser = async (req, res) => {
+app.post( '/wordguesser',async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
     const newGame = new WordGuesser({
@@ -66,6 +67,6 @@ export const wordguesser = async (req, res) => {
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
-};
+})
 
 
