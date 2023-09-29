@@ -5,7 +5,6 @@ const Module = () => {
 
   return (
     <div>
-
      <Games/>
     </div>
   );

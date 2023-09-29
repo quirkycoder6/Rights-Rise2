@@ -12,7 +12,7 @@ import WordScramble from "../wordScramble/WordScrambleGame";
 
 
 const Games = () => {
-  const [currentGame, setCurrentGame] = useState('quiz');
+  const [currentGame, setCurrentGame] = useState();
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1); // Use navigate with -1 to go back
