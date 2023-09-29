@@ -5,13 +5,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-.amin {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #4a98f7;
-}
+
 .wrapper {
   padding: 30px 40px;
   border-radius: 12px;

@@ -40,6 +40,7 @@ app.post("/numberguesser", async (req, res) => {
   }
 });
 
+
 app.post("/quiz", async (req, res) => {
   try {
     const { userId, question, options, correct } = req.body;

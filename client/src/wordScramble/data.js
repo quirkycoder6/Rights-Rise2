@@ -1,5 +1,5 @@
 
-const words = [
+export const words = [
     {
         word: "addition",
         hint: "The process of adding numbers"
