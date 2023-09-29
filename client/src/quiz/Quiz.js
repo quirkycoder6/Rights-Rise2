@@ -2,12 +2,41 @@ import React, { useState } from "react";
 import { QuizData } from "./QuizData";
 import QuizResult from "./QuizResult";
 import "./quiz.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserScore } from "../state";
 
 function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [clickedOption, setClickedOption] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  const userId = useSelector((state) => state.user._id);
+  const statescore = useSelector((state) => state.userscore)
+  const dispatch = useDispatch();
+  const handleScore = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/score", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, score }),
+      });
+      const data = await response.json();
+      console.log("data", data);
+      console.log("current score ", data);
+      console.log("score state ", statescore);
+      if (response.ok) {
+        dispatch(
+          setUserScore({
+            userscore: data,
+          })
+        );
+      }
+    } catch (error) {
+      alert("Unsuccessful Updation");
+    }
+  };
 
   const changeQuestion = () => {
     updateScore();
@@ -15,6 +44,7 @@ function Quiz() {
       setCurrentQuestion(currentQuestion + 1);
       setClickedOption(0);
     } else {
+      handleScore();
       setShowResult(true);
     }
   };
