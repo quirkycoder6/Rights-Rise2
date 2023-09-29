@@ -9,6 +9,7 @@ import NumberGuesser from "../numberguess/NumberGuess";
 import WordGuesser from "../wordguesser/WordGuess";
 import JigsawPuzzle from "../jigsawpuzzle/Jigsaw";
 import WordScramble from "../wordScramble/WordScrambleGame";
+import MCQQuestionMaker from '../quiz/QuizMaker';
 
 
 const Games = () => {
@@ -86,6 +87,16 @@ const Games = () => {
               Jigsaw Puzzle
             </button>
           </div>
+          <div className="flex flex-col items-center gap-4">
+            <button
+              onClick={() => setCurrentGame('quizmaker')}
+              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              ${currentGame === 'quizmaker' ? 'bg-yellow-600' : 'bg-yellow-500'}
+              ${currentGame === 'quizmaker' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
+            >
+              Quiz maker
+            </button>
+          </div>
         </div>
       </div>
       <div className="fixed bottom-0 w-full mb-3 md:hidden bg-white border-gray-300">
@@ -100,7 +111,7 @@ const Games = () => {
         {currentGame === 'wordscramble' && <WordScramble />}
         {currentGame === 'wordguesser' && <WordGuesser />}
         {currentGame === 'jigsaw' && <JigsawPuzzle />}
-        
+        {currentGame === 'quizmaker' && <MCQQuestionMaker />}
       </div>
 
       
