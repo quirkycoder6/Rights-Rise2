@@ -31,11 +31,11 @@ const NumberGuesserForm = () => {
   const [message, setMessage] = useState("");
   const userId = useSelector((state) => state.user._id);
   const msg = `
-  Create 10 number guesser questions about right to education. Your response should strictly follow the below mentioned structure. Your question should test education related articles knowledge written in the Indian law . It shouldn't be too simple.
+  Create 10 one word answer questions about right to education. Your response should strictly follow the below mentioned structure. Your question should test education related knowledge written in the Indian law . It shouldn't be too simple.
   You shouldn't ask the same question everytime. Don't mention question numbers.
   "
-  Question: The article number related question
-  Answer: Article Number (Dont include "Article" Word)
+  Question: Education laws in India number related question (its answer must have no spaces)
+  Answer:   Answer of the above question (in one word only. Must have no spaces.)
   "
   `;
 
