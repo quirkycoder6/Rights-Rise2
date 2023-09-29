@@ -19,6 +19,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       min: 2,
     },
+    score: {
+      type: Number,
+      default: 0
+    }
   },
   { timeStamps: true }
 );

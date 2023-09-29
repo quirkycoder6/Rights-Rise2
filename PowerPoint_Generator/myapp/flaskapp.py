@@ -9,6 +9,8 @@ from models import User
 from utils.gpt_generate import chat_development
 from utils.text_pp import parse_response, create_ppt
 from dotenv import load_dotenv
+import convertapi
+from pymongo import MongoClient
 
 load_dotenv()  # This loads the .env file
 
@@ -17,6 +19,11 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 bcrypt = Bcrypt(app)
 db.init_app(app)
+
+client = MongoClient('mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb')
+db1 = client['pptxDB']
+collection = db1['pptx']
+convertapi.api_secret = '4NPm2b4CQKdRkdKN'
 
 
 # Configure Flask-Login
@@ -82,7 +89,6 @@ def logout():
 
 
 @app.route('/generator', methods=['GET', 'POST'])
-@login_required
 def generate():
     if request.method == 'POST':
         number_of_slide = request.form['number_of_slide']
@@ -101,6 +107,62 @@ def generate():
         print(assistant_response)
         slides_content = parse_response(assistant_response)
         create_ppt(slides_content, template_choice, presentation_title, presenter_name, insert_image)
+        # Write PPTX file to MongoDB
+        def write_to_mongodb(file_path):
+            with open(file_path, 'rb') as file:
+                pptx_content = file.read()
+                collection.insert_one({'file_name': file_path, 'content': pptx_content})
+
+        # Read PPTX file from MongoDB and save to local system
+        def read_from_mongodb_save_locally(file_name, save_path):
+            pptx_data = collection.find_one({'file_name': file_name})
+            if pptx_data:
+                pptx_content = pptx_data['content']
+                pptx_path = os.path.join(save_path, file_name)  # Specify save path
+                
+                # Write pptx content to a temporary file
+                with open(pptx_path, 'wb') as tmp_pptx:
+                    tmp_pptx.write(pptx_content)
+                
+                return pptx_path
+            else:
+                return None
+
+            # Delete local PPTX file after inserting to MongoDB
+        def delete_local_file(file_path):
+                os.remove(file_path)
+
+            # Convert PPTX to PDF
+        def convert_pptx_to_pdf(input_path, output_path):
+                convertapi.convert('pdf', {'File': input_path}, from_format='pptx').save_files(output_path)
+        # File paths
+        pptx_file_path = '.\myapp\generated\generated_presentation.pptx'
+        save_path = '.'
+        pdf_output_path = '1.pdf'  # Define the PDF output path
+
+        # Write to MongoDB and delete local file
+        write_to_mongodb(pptx_file_path)
+        delete_local_file(pptx_file_path)
+
+        # Read from MongoDB and save locally with a new name
+        loaded_pptx_path = read_from_mongodb_save_locally(pptx_file_path, save_path)
+
+        if loaded_pptx_path:
+            print(f'Successfully loaded PPTX from MongoDB: {loaded_pptx_path}')
+        else:
+            print(f'Failed to load PPTX from MongoDB: {pptx_file_path}')
+
+        # Convert the loaded PPTX to PDF
+        convert_pptx_to_pdf(loaded_pptx_path, pdf_output_path)
+
+        # Print success message if the PDF was created
+        if os.path.exists(pdf_output_path):
+            print(f'Successfully converted PPTX to PDF: {pdf_output_path}')
+
+            # Replace the previous PDF with the new one
+            os.replace(pdf_output_path, 'previous_presentation.pdf')  # Replace the previous PDF
+        else:
+            print(f'Failed to convert PPTX to PDF')
 
     return render_template('generator.html', title='Generate')
 
