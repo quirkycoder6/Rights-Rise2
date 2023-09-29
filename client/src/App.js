@@ -44,7 +44,15 @@ function App() {
           />
           <Route
             path="/lawquest/module"
-            element={isAuth ? <Module /> : <Navigate to="/" />}
+            element={isAuth ? <Module name="vid.mp4"/> : <Navigate to="/" />}
+          />
+          <Route
+            path="/lawquest/module2"
+            element={isAuth ? <Module name="vid2.mp4"/> : <Navigate to="/" />}
+          />
+          <Route
+            path="/lawquest/module3"
+            element={isAuth ? <Module name="vid3.mp4"/> : <Navigate to="/" />}
           />
            <Route
             path="/lawquest/module/quiz"

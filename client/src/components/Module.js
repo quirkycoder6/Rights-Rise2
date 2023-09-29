@@ -1,9 +1,10 @@
 // import React, { useState } from 'react';
 import Games from './Games';
+import Gamess from './Gamesmaker';
 import VideoPlayer from '../video_player/VideoPlayer';
 import Leftbar from './leftbar';
 import Navbar from "../components/navbar";
-const Module = () => {
+const Module = (props) => {
 
   return (
     <>
@@ -16,7 +17,7 @@ const Module = () => {
         </div>
         <div className='flex flex-col justify-center items-center ml-20'>
           <div>
-              <VideoPlayer videoFilename="vid.mp4"/>
+              <VideoPlayer videoFilename={props.name}/>
           </div>
           <div>
             <Games/>

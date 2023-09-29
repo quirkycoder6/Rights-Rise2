@@ -16,9 +16,9 @@ const Dashboard = () => {
         </div>
         <div className="flex justify-center lg:justify-around sm:gap-3 flex-grow">
           <div className="flex items-center flex-col gap-4">
-            <Units chapter="Right to Education" />
-            <Units chapter="Child Labour"/>
-            <Units chapter="IT Rules"/>
+            <Units module="" chapter="Right to Education" />
+            <Units module="2" chapter="Child Labour"/>
+            <Units module="3" chapter="IT Rules"/>
           </div>
           <div className="flex items-center flex-col gap-5">
             <Dailyquest />

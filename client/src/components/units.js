@@ -5,7 +5,7 @@ const Units = (props) => {
 
   const navigate = useNavigate();
   const handleModuleClick = () => {
-    navigate('/lawquest/module')
+    navigate(`/lawquest/module${props.module}`)
   }
   return (
     <article class="max-w-2xl h-max text-white rounded-2xl bg-yellow-500 border-yellow-600">
