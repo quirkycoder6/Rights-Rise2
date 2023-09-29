@@ -10,7 +10,7 @@ import WordScrambleMaker from "../wordScramble/WordScrambleMaker";
 import MCQQuestionMaker from '../quiz/QuizMaker';
 
 
-const Games = () => {
+const Gamess = () => {
   const [currentGame, setCurrentGame] = useState();
   const navigate = useNavigate();
   const goBack = () => {
@@ -62,7 +62,7 @@ const Games = () => {
               ${currentGame === 'wordscramble' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'wordscramble' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
-              Word Scramble
+              Word Scramble Maker
             </button>
           </div>
           <div className="flex flex-col items-center gap-4">
@@ -72,7 +72,7 @@ const Games = () => {
               ${currentGame === 'wordguesser' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'wordguesser' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
-              Word Guesser
+              Word Guesser Maker
             </button>
           </div>
           <div className="flex flex-col items-center gap-4">
@@ -82,7 +82,7 @@ const Games = () => {
               ${currentGame === 'jigsaw' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'jigsaw' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
-              Jigsaw Puzzle
+              Jigsaw Puzzle Maker
             </button>
           </div>
 
@@ -108,4 +108,4 @@ const Games = () => {
   );
 }
 
-export default Games;
+export default Gamess;
