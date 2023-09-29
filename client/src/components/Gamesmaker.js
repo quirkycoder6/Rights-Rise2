@@ -1,14 +1,13 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Leftbar from "../components/leftbar";
 import Dailyquest from "../components/dailyquest";
 import Navbar from "../components/navbar";
-import QuizGame from "../quiz/Quiz";
-import NumberGuesser from "../numberguess/NumberGuess";
+import NumberGuessMaker from "../numberguess/NumberGuessMaker";
 import WordGuesser from "../wordguesser/WordGuess";
-import JigsawPuzzle from "../jigsawpuzzle/Jigsaw";
-import WordScramble from "../wordScramble/WordScrambleGame";
+import JigsawPuzzleMaker from "../jigsawpuzzle/PuzzleCreator";
+import WordScrambleMaker from "../wordScramble/WordScrambleMaker";
+import MCQQuestionMaker from '../quiz/QuizMaker';
 
 
 const Games = () => {
@@ -36,14 +35,14 @@ const Games = () => {
 
 
         <div className="flex-grow md:flex md:flex-row justify-center sm:gap-3">
-          <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4">
             <button
-              onClick={() => setCurrentGame('quiz')}
+              onClick={() => setCurrentGame('quizmaker')}
               className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
-              ${currentGame === 'quiz' ? 'bg-yellow-600' : 'bg-yellow-500'}
-              ${currentGame === 'quiz' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
+              ${currentGame === 'quizmaker' ? 'bg-yellow-600' : 'bg-yellow-500'}
+              ${currentGame === 'quizmaker' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
-              Quiz Game
+              Quiz maker
             </button>
           </div>
           <div className="flex flex-col items-center gap-4">
@@ -53,7 +52,7 @@ const Games = () => {
               ${currentGame === 'numberguesser' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'numberguesser' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
-              Number Guesser
+              Number Guess maker
             </button>
           </div>
           <div className="flex flex-col items-center gap-4">
@@ -86,7 +85,7 @@ const Games = () => {
               Jigsaw Puzzle
             </button>
           </div>
-          
+
         </div>
       </div>
       <div className="fixed bottom-0 w-full mb-3 md:hidden bg-white border-gray-300">
@@ -96,11 +95,12 @@ const Games = () => {
       </div>
       <div className="flex-grow bg-white flex justify-center items-center">
         
-        {currentGame === 'quiz' && <QuizGame />}
-        {currentGame === 'numberguesser' && <NumberGuesser />}
-        {currentGame === 'wordscramble' && <WordScramble />}
+        {currentGame === 'quizmaker' && <MCQQuestionMaker />}
+        {currentGame === 'numberguesser' && <NumberGuessMaker />}
+        {currentGame === 'wordscramble' && <WordScrambleMaker />}
         {currentGame === 'wordguesser' && <WordGuesser />}
-        {currentGame === 'jigsaw' && <JigsawPuzzle />}
+        {currentGame === 'jigsaw' && <JigsawPuzzleMaker />}
+        
       </div>
 
       
