@@ -123,6 +123,10 @@ const WordScrambleMaker = () => {
       <button onClick={main} className="bg-blue-700 p-3">
         Generate
       </button>
+      <p className="text-red-600 font-bold">
+        Use responsibly due to limited open ai calls. Question generation is
+        slow due to api. Wait for some time for response.
+      </p>
       {genQuestion.length > 0 && genAns.length ? (
         <ScrambleList genQuestion={genQuestion} genAns={genAns} />
       ) : (
