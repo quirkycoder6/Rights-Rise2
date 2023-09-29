@@ -120,7 +120,7 @@ const WordScrambleMaker = () => {
   return (
     <div className="container">
       <h2>Create a Word Scramble Game</h2>
-      <button onClick={main} className="bg-blue-700 p-3">
+      <button onClick={main} className="bg-blue-700 p-3 text-white rounded-lg">
         Generate
       </button>
       <p className="text-red-600 font-bold">
@@ -132,6 +132,9 @@ const WordScrambleMaker = () => {
       ) : (
         <></>
       )}
+      <h1 className="text-2xl bg-yellow-600 p-3 my-5 rounded-lg">
+        DO MANUALLY
+      </h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="question">Question:</label>

@@ -96,15 +96,19 @@ const NumberGuesserForm = () => {
   return (
     <div className="container">
       <h2>Create a Number Guesser Game</h2>
-      <button onClick={main} className="bg-blue-700 p-3">
+      <button onClick={main} className="bg-blue-700 p-3 text-white rounded-lg">
         Generate
       </button>
-      <p className="text-red-600 font-bold">Use responsibly due to limited open ai calls. Question generation is slow due to api. Wait for some time for response.</p>
+      <p className="text-red-600 font-bold">
+        Use responsibly due to limited open ai calls. Question generation is
+        slow due to api. Wait for some time for response.
+      </p>
       {genQuestion.length > 0 && genAns.length ? (
         <QuestionAnswerList genQuestion={genQuestion} genAns={genAns} />
       ) : (
         <></>
       )}
+      <h1 className="text-2xl bg-yellow-600 p-3 my-5 rounded-lg">DO MANUALLY</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="question">Question:</label>
