@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 function QuestionAnswerList({ genQuestion, genAns }) {
   const userId = useSelector((state) => state.user._id);
-const handleSubmit = async (e, question, correct) => {
+  const handleSubmit = async (e, question, correct) => {
   e.preventDefault();
 
   console.log("Question:", question);

@@ -7,6 +7,7 @@ import NumberGuesser from "../numberguess/NumberGuess";
 import NumberGuessMaker from "../numberguess/NumberGuessMaker";
 import WordGuesser from "../wordguesser/WordGuess";
 import JigsawPuzzle from "../jigsawpuzzle/Jigsaw";
+import Main from '../jigsawpuzzle/Main';
 
 const Module = () => {
   const [currentGame, setCurrentGame] = useState(null);
@@ -27,6 +28,7 @@ const Module = () => {
             <button onClick={() => setCurrentGame('numberguessmaker')} className="btn btn-primary">Number Guess Maker</button>
             <button onClick={() => setCurrentGame('wordguesser')} className="btn btn-primary">Word Guesser</button>
             <button onClick={() => setCurrentGame('jigsaw')} className="btn btn-primary">Jigsaw Puzzle</button>
+            <button onClick={() => setCurrentGame('jigsawMaker')} className="btn btn-primary">Jigsaw Maker</button>
           </div>
           <div className="flex items-center flex-col gap-5">
             {currentGame === 'quiz' && <QuizGame />}
@@ -34,6 +36,7 @@ const Module = () => {
             {currentGame === 'numberguessmaker' && <NumberGuessMaker />}
             {currentGame === 'wordguesser' && <WordGuesser />}
             {currentGame === 'jigsaw' && <JigsawPuzzle />}
+            {currentGame === 'jigsawMaker' && <Main />}
           </div>
         </div>
       </div>

@@ -30,8 +30,6 @@ function Quiz() {
     setScore(0);
   };
   return (
-    <div className="main">
-      {/* <p className="heading-txt">Quiz APP</p> */}
       <div className="container">
         {showResult ? (
           <QuizResult
@@ -72,7 +70,6 @@ function Quiz() {
           </>
         )}
       </div>
-    </div>
   );
 }
 

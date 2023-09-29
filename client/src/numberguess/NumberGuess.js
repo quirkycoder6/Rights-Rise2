@@ -55,7 +55,6 @@ const App = () => {
   };
 
   return (
-    <div className='main'>
       <div className="wrapper">
         <header>Article number ____ is Right to Equality </header>
         <p className="guess" style={{ color: guessColor }}>
@@ -78,7 +77,6 @@ const App = () => {
           Score: {score}
         </p>
       </div>
-    </div>
   );
 };
 
