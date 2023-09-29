@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Dailyquest from "../components/dailyquest";
 import Navbar from "../components/navbar";
 import NumberGuessMaker from "../numberguess/NumberGuessMaker";
-import WordGuesser from "../wordguesser/WordGuess";
+import WordGuessMaker from "../wordguesser/WordGuessMaker";
 import JigsawPuzzleMaker from "../jigsawpuzzle/PuzzleCreator";
 import WordScrambleMaker from "../wordScramble/WordScrambleMaker";
 import MCQQuestionMaker from '../quiz/QuizMaker';
@@ -38,7 +38,7 @@ const Gamess = () => {
         <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setCurrentGame('quizmaker')}
-              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              className={`h-16 px-6 m-2 text-lg text-white font-bold transition-colors duration-150 rounded-lg
               ${currentGame === 'quizmaker' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'quizmaker' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
@@ -48,7 +48,7 @@ const Gamess = () => {
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setCurrentGame('numberguesser')}
-              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              className={`h-16 px-6 m-2 text-lg text-white font-bold transition-colors duration-150 rounded-lg
               ${currentGame === 'numberguesser' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'numberguesser' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
@@ -58,7 +58,7 @@ const Gamess = () => {
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setCurrentGame('wordscramble')}
-              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              className={`h-16 px-6 m-2 text-lg text-white font-bold transition-colors duration-150 rounded-lg
               ${currentGame === 'wordscramble' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'wordscramble' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
@@ -68,17 +68,17 @@ const Gamess = () => {
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setCurrentGame('wordguesser')}
-              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              className={`h-16 px-6 m-2 text-lg text-white font-bold transition-colors duration-150 rounded-lg
               ${currentGame === 'wordguesser' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'wordguesser' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
-              Word Guesser Maker
+              Word Guess Maker
             </button>
           </div>
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setCurrentGame('jigsaw')}
-              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              className={`h-16 px-6 m-2 text-lg text-white font-bold  transition-colors duration-150 rounded-lg
               ${currentGame === 'jigsaw' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'jigsaw' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
@@ -98,7 +98,7 @@ const Gamess = () => {
         {currentGame === 'quizmaker' && <MCQQuestionMaker />}
         {currentGame === 'numberguesser' && <NumberGuessMaker />}
         {currentGame === 'wordscramble' && <WordScrambleMaker />}
-        {currentGame === 'wordguesser' && <WordGuesser />}
+        {currentGame === 'wordguesser' && <WordGuessMaker />}
         {currentGame === 'jigsaw' && <JigsawPuzzleMaker />}
         
       </div>

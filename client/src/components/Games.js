@@ -39,7 +39,7 @@ const Games = () => {
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setCurrentGame('quiz')}
-              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              className={`h-12 px-6 m-2 text-lg text-white font-bold transition-colors duration-150 rounded-lg
               ${currentGame === 'quiz' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'quiz' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
@@ -49,7 +49,7 @@ const Games = () => {
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setCurrentGame('numberguesser')}
-              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              className={`h-12 px-6 m-2 text-lg text-white font-bold transition-colors duration-150 rounded-lg
               ${currentGame === 'numberguesser' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'numberguesser' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
@@ -59,7 +59,7 @@ const Games = () => {
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setCurrentGame('wordscramble')}
-              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              className={`h-12 px-6 m-2 text-lg text-white font-bold transition-colors duration-150 rounded-lg
               ${currentGame === 'wordscramble' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'wordscramble' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
@@ -69,7 +69,7 @@ const Games = () => {
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setCurrentGame('wordguesser')}
-              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              className={`h-12 px-6 m-2 text-lg text-white font-bold transition-colors duration-150 rounded-lg
               ${currentGame === 'wordguesser' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'wordguesser' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
@@ -79,7 +79,7 @@ const Games = () => {
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setCurrentGame('jigsaw')}
-              className={`h-12 px-6 m-2 text-lg text-white transition-colors duration-150 rounded-lg
+              className={`h-12 px-6 m-2 text-lg text-white font-bold transition-colors duration-150 rounded-lg
               ${currentGame === 'jigsaw' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'jigsaw' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
