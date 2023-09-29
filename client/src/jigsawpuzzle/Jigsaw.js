@@ -13,16 +13,20 @@ function Jigsaw() {
 	};
 	
 	return (
-		<>
+		<div>
+			
+	
 			<h2 className="tag">{text}</h2>
-			<JigsawPuzzle
+				<JigsawPuzzle
 				imageSrc={img}
 				rows={3}
 				columns={3}
 				onSolved={set}
 				className="jigsaw-puzzle"
 			/>
-		</>
+
+			
+		</div>
 	);
 }
 

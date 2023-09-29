@@ -1,15 +1,28 @@
-/* for the heading */
+
 .tag {
+	font-size: 25px;
+	font-weight: 600;
+	padding-top: 100px;
+	padding-bottom: 20px;
 	text-align: center;
-	color: green;
-	margin: 2rem;
 }
 
-/* for the jigsaw puzzle container */
 .jigsaw-puzzle {
-	width: 500px;
+	width: 900px;
 	height: 900px;
-	border: 2px solid black;
-	margin: auto;
+	border: 1.5px solid black;
+	margin: 20px;
 	box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.25);
+	/* padding-bottom:20px; */
 }
+
+@media (max-width: 768px) {
+	.jigsaw-puzzle {
+	  width: 100%; /* Make it full width */
+	  height: auto; /* Allow height to adjust proportionally */
+	  max-width: 400px; /* Set a maximum width to prevent it from getting too large */
+	  margin: 10px; /* Adjust margin as needed for spacing */
+	  border: 1px solid black; /* Adjust border width */
+	  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Lighter box shadow */
+	}
+  }

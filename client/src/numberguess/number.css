@@ -5,18 +5,42 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-
-.wrapper {
-  padding: 30px 40px;
-  border-radius: 12px;
-  background: #fff;
-  text-align: center;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+.main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:auto;
 }
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 300px;
+  width: 400px;
+  border:1px solid #ccc; 
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);  
+  overflow: hidden;
+  padding: 5px;
+  position: relative;
+  margin: 120px; 
+}
+
+.wrapper h2 {
+  font-size: 25px;
+  font-weight: 600;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
 .wrapper header {
   font-size: 18px;
   font-weight: 400;
   color: #333;
+  padding:20px;
 }
 .wrapper p {
   color: #333;
@@ -51,10 +75,17 @@ input::-webkit-outer-spin-button {
 }
 .input-field button {
   border: none;
-  background: #4a98f7;
   color: #fff;
   cursor: pointer;
-  transition: 0.3s;
+  background: #276272;
+  color:white;
+  border-radius: 5px;
+  box-shadow: 3px 2px 1px 0.5px rgb(127, 109, 109);
+  font-size: larger;
+  font-weight: bold;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  transition: 0.2s;
+
 }
 .input-field button:active {
   transform: scale(0.97);

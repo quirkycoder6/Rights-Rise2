@@ -30,6 +30,7 @@ function Quiz() {
     setScore(0);
   };
   return (
+    <div className="main">
       <div className="container">
         {showResult ? (
           <QuizResult
@@ -65,11 +66,13 @@ function Quiz() {
               type="button"
               value="Next"
               id="next-button"
+              className="px-4 py-2 bg-teal-700 text-white rounded-md shadow-md font-bold text-lg font-serif transition duration-200 hover:shadow-none active:scale-97"
               onClick={changeQuestion}
             />
           </>
         )}
       </div>
+    </div>
   );
 }
 

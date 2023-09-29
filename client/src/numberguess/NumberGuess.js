@@ -55,7 +55,9 @@ const App = () => {
   };
 
   return (
+    <div className='main'>
       <div className="wrapper">
+      <h2 className="center">Guess the number</h2>
         <header>Article number ____ is Right to Equality </header>
         <p className="guess" style={{ color: guessColor }}>
           {guessText}
@@ -68,7 +70,8 @@ const App = () => {
             onChange={handleInputChange}
             disabled={inputDisabled}
           />
-          <button id='butnum' onClick={handleCheckClick}>{buttonLabel}</button>
+          <button className="px-4 py-2 bg-teal-700 text-white rounded-md shadow-md font-bold text-lg font-serif transition duration-200 hover:shadow-none"
+   onClick={handleCheckClick}>{buttonLabel}</button>
         </div>
         <p>
           You have <span className="chances">{chance}</span> chances
@@ -77,6 +80,7 @@ const App = () => {
           Score: {score}
         </p>
       </div>
+    </div>
   );
 };
 

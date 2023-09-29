@@ -18,7 +18,7 @@ import NumberGuessMaker from "./numberguess/NumberGuessMaker";
 import Main from "./jigsawpuzzle/Main";
 
 function App() {
-  const isAuth = Boolean(useSelector((state) => state.token));
+  const isAuth =Boolean(useSelector((state) => state.token));
   return (
     <div className="App">
       <BrowserRouter>

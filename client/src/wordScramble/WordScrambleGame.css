@@ -1,19 +1,6 @@
+
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  display: flex;
-  padding: 0 10px;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-} */
 
 .container {
   width: 440px;
@@ -21,8 +8,14 @@ body {
   background: #fff;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
+  margin-top : 120px;
 }
 
+
+.scramble {
+  font-size: 25px;
+  font-weight: 600;
+}
 .container h2 {
   font-size: 25px;
   font-weight: 600;
@@ -126,14 +119,14 @@ body {
   border-radius: 5px;
   width: 150%;
   transition: all 0.3s ease;
-  background: #3571AE; 
+  background: #276272; 
 }
 
 .buttons button:active {
   transform: scale(0.97);
 }
 .buttons .check-word {
-  background: #3571AE; 
+  background: #276272; 
 }
 
 .buttons .check-word:hover {

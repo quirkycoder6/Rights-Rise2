@@ -1,92 +1,157 @@
-import React, { useState, useEffect } from 'react';
-import './WordScrambleGame.css';
-import {words} from './data'
+import React, { Component } from 'react';
+import './WordScrambleGame.css'; 
+import words from './data';
 
-function App() {
-  const [word, setWord] = useState('');
-  const [hint, setHint] = useState('');
-  const [timeLeft, setTimeLeft] = useState(30);
-  const [userInput, setUserInput] = useState('');
-  const [correctWord, setCorrectWord] = useState('');
-  const [isGameRunning, setIsGameRunning] = useState(false);
+export class WordScrambleGame extends Component {
+  constructor(props) {
+    super(props);
 
-  let timer;
+    this.state = {
+      words: [],
+      currentWord: null,
+      scrambledWord: '',
+      inputWord: '',
+      score: 0,
+      remainingWords: 10,
+      timer: 30,
+      gameOver: false,
+      hint: '',
+      gameStarted: false,
+    };
 
-  const initTimer = () => {
-    clearInterval(timer);
-    timer = setInterval(() => {
-      setTimeLeft((prevTimeLeft) => {
-        if (prevTimeLeft > 0) {
-          return prevTimeLeft - 1;
-        } else {
-          clearInterval(timer);
-          alert(`Time off! ${correctWord.toUpperCase()} was the correct word`);
-          initGame(); // Reset the game after the time is up
-          return 0;
-        }
-      });
-    }, 1000);
-  };
+    this.shuffleArray = this.shuffleArray.bind(this);
+  }
 
-  const initGame = () => {
-    initTimer();
-    const randomObj = words[Math.floor(Math.random() * words.length)];
-    const wordArray = randomObj.word.split('');
-    for (let i = wordArray.length - 1; i > 0; i--) {
+  componentDidMount() {
+    this.setState({ words: this.shuffleArray([...words]) });
+  }
+
+  shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [wordArray[i], wordArray[j]] = [wordArray[j], wordArray[i]];
+      [array[i], array[j]] = [array[j], array[i]];
     }
-    setWord(wordArray.join(''));
-    setHint(randomObj.hint);
-    setCorrectWord(randomObj.word.toLowerCase());
-    setUserInput('');
-    setIsGameRunning(true);
-  };
+    return array;
+  }
 
-  useEffect(() => {
-    initGame();
-  }, []);
+  startTimer() {
+    this.timerInterval = setInterval(() => {
+      const { timer } = this.state;
+      if (timer > 0) {
+        this.setState({ timer: timer - 1 });
+      } else {
+        this.nextWord();
+      }
+    }, 1000);
+  }
 
-  const checkWord = () => {
-    const userWord = userInput.toLowerCase();
-    if (!userWord) return alert('Please enter the word to check!');
-    if (userWord !== correctWord) return alert(`Oops! ${userWord} is not a correct word`);
-    clearInterval(timer); // Stop the timer when the word is correct
-    alert(`Congrats! ${correctWord.toUpperCase()} is the correct word`);
-    initGame();
-  };
+  stopTimer() {
+    clearInterval(this.timerInterval);
+  }
 
-  const resetGame = () => {
-    clearInterval(timer);
-    setTimeLeft(30);
-    setIsGameRunning(false);
-    setUserInput('');
-  };
+  startGame() {
+    this.setState({ gameStarted: true }, () => {
+      this.nextWord();
+      this.startTimer();
+    });
+  }
 
-  return (
-    <div className="container">
-      <h2>Word Scramble</h2>
-      <div className="content">
-        <p className="word">{word}</p>
-        <div className="details">
-          <p className="hint">Hint: <span>{hint}</span></p>
-          <p className="time">Time Left: <span><b>{timeLeft}</b>s</span></p>
-        </div>
-        <input
-          type="text"
-          spellCheck="false"
-          placeholder="Enter a valid word"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          disabled={!isGameRunning}
-        />
-        <div className="buttons">
-          <button className="refresh-word" onClick={resetGame}>Refresh Word</button>
-          <button className="check-word" onClick={checkWord} disabled={!isGameRunning}>Check Word</button>
-        </div>
+  nextWord() {
+    const { words, remainingWords } = this.state;
+
+    if (remainingWords === 0) {
+      this.stopTimer();
+      this.setState({
+        gameOver: true,
+      });
+      return;
+    }
+
+    const word = words.pop();
+    const scrambledWord = this.shuffleArray([...word.word]).join('');
+
+    this.setState({
+      currentWord: word,
+      scrambledWord,
+      inputWord: '',
+      remainingWords: remainingWords - 1,
+      timer: 30,
+      hint: word.hint,
+    });
+  }
+
+  checkWord() {
+    const { inputWord, currentWord, score } = this.state;
+
+    if (inputWord.toLowerCase() === currentWord.word.toLowerCase()) {
+      this.stopTimer();
+      this.setState(
+        {
+          score: score + 1,
+        },
+        () => {
+          this.nextWord();
+          this.startTimer();
+        }
+      );
+    } else {
+      alert('Wrong answer! Try again.');
+    }
+  }
+
+  render() {
+    const {
+      scrambledWord,
+      inputWord,
+      score,
+      remainingWords,
+      timer,
+      gameOver,
+      hint,
+      gameStarted,
+    } = this.state;
+
+    return (
+      <div className="container mt-28">
+        <h2 className="center">Word Scramble Game</h2>
+        {!gameStarted && !gameOver && (
+          <div className="startArea">
+            <button className="px-4 py-2 bg-teal-700 text-white rounded-md shadow-md font-bold text-lg font-serif transition duration-200 hover:shadow-none"
+  style={{ width: "100px", position: "absolute", bottom: "15px" }} onClick={() => this.startGame()}>
+              Start
+            </button>
+          </div>
+        )}
+        {gameStarted && (
+          <div className="content">
+            <p className='scramble' style={{ textTransform: 'uppercase', letterSpacing: '5px' }}  >{scrambledWord}</p>
+            <p>Hint: {hint}</p>
+            <input
+              type="text"
+              value={inputWord}
+              onChange={(e) => this.setState({ inputWord: e.target.value })}
+            />
+            <div className="buttons">
+              <button className="px-4 py-2 bg-teal-700 text-white rounded-md shadow-md font-bold text-lg font-serif transition duration-200 hover:shadow-none mt-4 mb-4"
+   onClick={() => this.checkWord()}>
+                Check
+              </button>
+            </div>
+          </div>
+        )}
+        <p className="score-area">
+          Score: <span className="score">{score}</span>
+        </p>
+        <p>Remaining Words: {remainingWords}</p>
+        <p>Time Left: {timer} seconds</p>
+        {gameOver && (
+          <p className="center">
+            Game Over! Your final score: <span className="score">{score}</span>
+          </p>
+        )}
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default App;
+export default WordScrambleGame;
