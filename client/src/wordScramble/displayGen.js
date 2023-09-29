@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-function QuestionAnswerList({ genQuestion, genAns }) {
+const ScrambleList = ({ genQuestion, genAns }) => {
   const userId = useSelector((state) => state.user._id);
   const handleSubmit = async (e, question, correct) => {
     e.preventDefault();
@@ -10,7 +10,7 @@ function QuestionAnswerList({ genQuestion, genAns }) {
     console.log("Correct Answer:", correct);
 
     try {
-      const response = await fetch("http://localhost:3001/numberguesser", {
+      const response = await fetch("http://localhost:3001/scramble", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,7 +25,6 @@ function QuestionAnswerList({ genQuestion, genAns }) {
       console.error("Error:", error);
     }
   };
-
   return (
     <div>
       <h2>Questions and Answers</h2>
@@ -58,6 +57,6 @@ function QuestionAnswerList({ genQuestion, genAns }) {
       </ul>
     </div>
   );
-}
+};
 
-export default QuestionAnswerList;
+export default ScrambleList;
