@@ -42,23 +42,6 @@ app.post("/numberguesser", async (req, res) => {
   }
 });
 
-app.post("/quiz", async (req, res) => {
-  try {
-    const { userId, question, options, correct } = req.body;
-    const newGame = new Quiz({
-      userId,
-      question,
-      options,
-      correct,
-    });
-    await newGame.save();
-    const games = await Quiz.find({ userId });
-    res.status(201).json(games);
-  } catch (error) {
-    res.status(409).json({ message: error.message });
-  }
-});
-
 app.post("/scramble", async (req, res) => {
   try {
     const { userId, question, correct } = req.body;
@@ -108,6 +91,20 @@ app.post("/score", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+
+app.post('/quiz', async (req, res) => {
+  try {
+    const questionData = req.body;
+    const newQuestion = new Quiz(questionData);
+    await newQuestion.save();
+    res.status(200).json({ message: 'Question created successfully' });
+  } catch (error) {
+    console.error('Error creating question:', error);
+    res.status(500).json({ message: 'Error creating question' });
+  }
+});
+
 
 const PORT = process.env.PORT || 6000;
 mongoose

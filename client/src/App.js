@@ -16,6 +16,7 @@ import WordScrambleGame from "./wordScramble/WordScrambleGame";
 import WordScrambleMaker from "./wordScramble/WordScrambleMaker";
 import NumberGuessMaker from "./numberguess/NumberGuessMaker";
 import Main from "./jigsawpuzzle/Main";
+import MCQQuestionMaker from "./quiz/QuizMaker";
 
 function App() {
   const isAuth =Boolean(useSelector((state) => state.token));
@@ -76,6 +77,10 @@ function App() {
           <Route
             path="/lawquest/module/jigsawmaker"
             element={isAuth ? < Main/> : <Navigate to="/" />}
+          />
+          <Route
+            path="/lawquest/module/quizmaker"
+            element={isAuth ? < MCQQuestionMaker/> : <Navigate to="/" />}
           />
         </Routes>
       </BrowserRouter>
