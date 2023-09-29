@@ -1,7 +1,7 @@
 import io
 import json
 import os
-
+import convertapi
 import requests
 from pptx import Presentation
 from pptx.dml.color import RGBColor
@@ -10,11 +10,48 @@ from urllib.parse import quote_plus
 from dotenv import load_dotenv
 from reportlab.pdfgen import canvas
 import aspose.slides as slides
+from pymongo import MongoClient
+
 
 dir_path = '.\myapp\static\presentations'
-
+# convertapi.api_secret = '4NPm2b4CQKdRkdKN'
 load_dotenv()
 API_KEY = os.getenv('PEXELS_API_KEY')
+
+
+client = MongoClient('mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb')
+db = client['pptx_database']
+collection = db['pptx_collection']
+convertapi.api_secret = '4NPm2b4CQKdRkdKN'
+
+# # Write PPTX file to MongoDB
+# def write_to_mongodb(file_path):
+#     with open(file_path, 'rb') as file:
+#         pptx_content = file.read()
+#         collection.insert_one({'file_name': file_path, 'content': pptx_content})
+
+# # Read PPTX file from MongoDB and save to local system
+# def read_from_mongodb_save_locally(file_name, save_path):
+#     pptx_data = collection.find_one({'file_name': file_name})
+#     if pptx_data:
+#         pptx_content = pptx_data['content']
+#         pptx_path = os.path.join(save_path, file_name)  # Specify save path
+        
+#         # Write pptx content to a temporary file
+#         with open(pptx_path, 'wb') as tmp_pptx:
+#             tmp_pptx.write(pptx_content)
+        
+#         return pptx_path
+#     else:
+#         return None
+
+# # Delete local PPTX file after inserting to MongoDB
+# def delete_local_file(file_path):
+#     os.remove(file_path)
+
+# # Convert PPTX to PDF
+# def convert_pptx_to_pdf(input_path, output_path):
+#     convertapi.convert('pdf', {'File': input_path}, from_format='pptx').save_files(output_path)
 
 def parse_response(response):
     slides = response.split('\n\n')
@@ -185,23 +222,91 @@ def create_ppt(slides_content, template_choice, presentation_title, presenter_na
     # Save the presentation
     prs.save(os.path.join('.\myapp\generated', 'generated_presentation.pptx'))
 
+# # File paths
+# pptx_file_path = '.\myapp\generated\generated_presentation.pptx'
+# save_path = '.'
+# pdf_output_path = '1.pdf'  # Define the PDF output path
+
+# # Write to MongoDB and delete local file
+# write_to_mongodb(pptx_file_path)
+# delete_local_file(pptx_file_path)
+
+# # Read from MongoDB and save locally with a new name
+# loaded_pptx_path = read_from_mongodb_save_locally(pptx_file_path, save_path)
+
+# if loaded_pptx_path:
+#     print(f'Successfully loaded PPTX from MongoDB: {loaded_pptx_path}')
+# else:
+#     print(f'Failed to load PPTX from MongoDB: {pptx_file_path}')
+
+# # Convert the loaded PPTX to PDF
+# convert_pptx_to_pdf(loaded_pptx_path, pdf_output_path)
+
+# # Print success message if the PDF was created
+# if os.path.exists(pdf_output_path):
+#     print(f'Successfully converted PPTX to PDF: {pdf_output_path}')
+
+#     # Replace the previous PDF with the new one
+#     os.replace(pdf_output_path, 'previous_presentation.pdf')  # Replace the previous PDF
+# else:
+#     print(f'Failed to convert PPTX to PDF')
+
+
+
+
+
+
+
 #pres = slides.Presentation(".\myapp\generated\generated_presentation.pptx")
 
-# Convert PPTX to PDF
-#pres.save("national.pdf", slides.export.SaveFormat.PDF)
-def convert_pptx_to_pdf(input_pptx, output_pdf):
-    prs = Presentation(input_pptx)
-    pdf_canvas = canvas.Canvas(output_pdf)
+# # Convert PPTX to PDF
+# #pres.save("national.pdf", slides.export.SaveFormat.PDF)
+# def convert_pptx_to_pdf(input_pptx, output_pdf):
+#     prs = Presentation(input_pptx)
+#     pdf_canvas = canvas.Canvas(output_pdf)
 
-    for slide in prs.slides:
-        pdf_canvas.setFont("Helvetica", 12)
-        pdf_canvas.drawString(72, 720, f"Slide {prs.slides.index(slide) + 1}")
-        pdf_canvas.showPage()
+#     for slide in prs.slides:
+#         pdf_canvas.setFont("Helvetica", 12)
+#         pdf_canvas.drawString(72, 720, f"Slide {prs.slides.index(slide) + 1}")
+#         pdf_canvas.showPage()
 
-    pdf_canvas.save()
+#     pdf_canvas.save()
 
-input_pptx = '.\myapp\generated\generated_presentation.pptx'
-output_pdf = 'output1.pdf'
+# input_pptx = '.\myapp\generated\generated_presentation.pptx'
+# output_pdf = 'ppt.pdf'
 
-convert_pptx_to_pdf(input_pptx, output_pdf)
+# convert_pptx_to_pdf(input_pptx, output_pdf)
+# def convert():
+#     convertapi.convert('pdf', {
+#         'File': './myapp/generated/generated_presentation.pptx'
+#     }, from_format = 'pptx').save_files('.')
 
+
+# def writeOne():
+#     # Connect to MongoDB
+#     client = pymongo.MongoClient("mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb")
+#     db = client["pptDB"]
+#     collection = db["pptx_collection"]
+
+#     # Read the generated PPTX file as binary data
+#     with open('.\myapp\generated\generated_presentation.pptx', 'rb') as file:
+#         pptx_binary = file.read()
+
+#     # Define metadata for the PPTX file (e.g., title, author, etc.)
+#     pptx_metadata = {
+#         "title": "Generated Presentation",
+#         "author": "Your Name",
+#         # Add any other metadata fields as needed
+#     }
+
+#     # Create a document to store the PPTX binary and its metadata
+#     pptx_document = {
+#         "metadata": pptx_metadata,
+#         "file": pptx_binary
+#     }
+
+#     # Insert the document into the collection
+#     collection.insert_one(pptx_document)
+
+#     # Close the MongoDB connection
+#     client.close()
