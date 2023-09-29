@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./puzzle.css";
 import { JigsawPuzzle } from "react-jigsaw-puzzle/lib";
 import "react-jigsaw-puzzle/lib/jigsaw-puzzle.css";
-import img from "./1192413.jpg";
+import img from "./RTE.png";
 import './puzzle.css'
 
 function Jigsaw() {

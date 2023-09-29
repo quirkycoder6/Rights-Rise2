@@ -1,97 +1,104 @@
 
 export const words = [
     {
-        word: "addition",
-        hint: "The process of adding numbers"
-    },
-    {
-        word: "meeting",
-        hint: "Event in which people come together"
-    },
-    {
-        word: "number",
-        hint: "Math symbol used for counting"
-    },
-    {
-        word: "exchange",
-        hint: "The act of trading"
-    },
-    {
-        word: "canvas",
-        hint: "Piece of fabric for oil painting"
-    },
-    {
-        word: "garden",
-        hint: "Space for planting flower and plant"
-    },
-    {
-        word: "position",
-        hint: "Location of someone or something"
-    },
-    {
-        word: "feather",
-        hint: "Hair like outer covering of bird"
-    },
-    {
-        word: "comfort",
-        hint: "A pleasant feeling of relaxation"
-    },
-    {
-        word: "tongue",
-        hint: "The muscular organ of mouth"
-    },
-    {
-        word: "expansion",
-        hint: "The process of increase or grow"
-    },
-    {
-        word: "country",
-        hint: "A politically identified region"
-    },
-    {
-        word: "group",
-        hint: "A number of objects or persons"
-    },
-    {
-        word: "taste",
-        hint: "Ability of tongue to detect flavour"
-    },
-    {
-        word: "store",
-        hint: "Large shop where goods are traded"
-    },
-    {
-        word: "field",
-        hint: "Area of land for farming activities"
-    },
-    {
-        word: "friend",
-        hint: "Person other than a family member"
-    },
-    {
-        word: "pocket",
-        hint: "A bag for carrying small items"
-    },
-    {
-        word: "needle",
-        hint: "A thin and sharp metal pin"
-    },
-    {
-        word: "expert",
-        hint: "Person with extensive knowledge"
-    },
-    {
-        word: "statement",
-        hint: "A declaration of something"
-    },
-    {
-        word: "second",
-        hint: "One-sixtieth of a minute"
-    },
-    {
-        word: "library",
-        hint: "Place containing collection of books"
-    }
+        word:"children",
+        hint:"Young humans who are not yet adults."
+      },
+      
+      {
+        word:"dream",
+        hint:"A series of thoughts, images, and sensations occurring in the mind during sleep or a cherished aspiration or goal."
+      },
+      
+      {
+        word:"labor",
+        hint:"Work, especially hard physical work."
+      },
+      
+      {
+        word:"hazard",
+        hint:"A potential source of danger or risk."
+      },
+      
+      {
+        word:"prohibit",
+        hint:"To formally forbid by law, rule, or authority."
+      },
+      
+      {
+        word:"education",
+        hint:"The process of acquiring knowledge, skills, and values through teaching and learning."
+      },
+      
+      {
+        word:"income",
+        hint:"Money received regularly for work or through investments."
+      },
+      
+      {
+        word:"school",
+        hint:" An institution where students receive education and training."
+      },
+      
+      {
+        word:"protection",
+        hint:"The act of keeping something or someone safe from harm or danger."
+      },
+      
+      {
+        word:"future",
+        hint:"The period of time that will come after the present; what will happen in the time ahead."
+      },
+      {
+        word:"education",
+        hint:" The process of gaining knowledge and skills through teaching and learning."
+      },
+      
+      {
+        word:"school",
+        hint:"A place where students go to learn and receive education."
+      },
+      
+      {
+        word:"books",
+        hint:"These are often found on shelves, and they contain stories, knowledge, and information."
+      },
+      
+      {
+        word:"uniform",
+        hint:"Clothing worn by students to create a sense of equality and identity in schools."
+      },
+      
+      {
+        word:"fees",
+        hint:" Payments made for services, often required for attending educational institutions."
+      },
+      
+      {
+        word:"knowledge",
+        hint:"The information and understanding that you gain through learning and experience."
+      },
+      
+      {
+        word:"money",
+        hint:"Currency and coins used for transactions and as a medium of exchange."
+      },
+      
+      {
+        word:"learning",
+        hint:"The process of acquiring knowledge or skills through study, experience, or teaching."
+      },
+      
+      {
+        word:"student",
+        hint:"A person who is enrolled in an educational institution to acquire knowledge and skills."
+      },
+      
+      {
+        word:"free",
+        hint:"This word is often used to describe something that doesn't cost anything or is not constrained or restricted."
+      }
+      
   ];
   
   export default words;

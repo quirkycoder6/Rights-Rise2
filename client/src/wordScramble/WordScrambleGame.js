@@ -112,7 +112,7 @@ export class WordScrambleGame extends Component {
     } = this.state;
 
     return (
-      <div className="container mt-28">
+      <div className="container mt-28 mb-8">
         <h2 className="center">Word Scramble Game</h2>
         {!gameStarted && !gameOver && (
           <div className="startArea">
