@@ -2,7 +2,7 @@ import { useState } from "react";
 import loginImage from "../images/login.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setLogin } from "../state";
+import { setLogin, setUserScore } from "../state";
 
 const RegisterPage = () => {
   const [loginpage, setLoginpage] = useState(true);
@@ -29,6 +29,12 @@ const RegisterPage = () => {
     console.log("register data ", data);
     if (response.ok || data.statusCode === 201) {
       alert("Registration successful");
+      dispatch(
+        setLogin({
+          user: data.user,
+          token: data.token,
+        })
+      );
       navigate("/lawquest");
     } else {
       alert("Unsuccessful registration");
@@ -59,6 +65,11 @@ const RegisterPage = () => {
           setLogin({
             user: data.user,
             token: data.token,
+          })
+        );
+        dispatch(
+          setUserScore({
+            userscore: data.user.score,
           })
         );
         navigate("/lawquest");

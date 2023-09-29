@@ -7,7 +7,9 @@ import NumberGuesser from "./models/Number.js";
 import Quiz from "./models/Quiz.js";
 import Scramble from "./models/Scramble.js";
 import WordGuesser from "./models/WordGuesser.js";
+import User from "./models/User.js";
 import { verifyToken } from "./middleware/auth.js";
+const { ObjectId } = mongoose.Types;
 
 dotenv.config();
 const app = express();
@@ -39,7 +41,6 @@ app.post("/numberguesser", async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 });
-
 
 app.post("/quiz", async (req, res) => {
   try {
@@ -87,6 +88,24 @@ app.post("/wordguesser", async (req, res) => {
     res.status(201).json(games);
   } catch (error) {
     res.status(409).json({ message: error.message });
+  }
+});
+
+/* --------------------------------- SCORING -------------------------------- */
+
+app.post("/score", async (req, res) => {
+  try {
+    const { userId, score } = req.body;
+    const userIdObject = new ObjectId(userId);
+    const user = await User.findOne({ _id: userIdObject });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    user.score += score;
+    const updatedUser = await user.save();
+    res.status(201).json(updatedUser.score);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 

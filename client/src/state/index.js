@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   // jwt
   token: null,
+  userscore: 0
 };
 
 export const authSlice = createSlice({
@@ -18,9 +19,12 @@ export const authSlice = createSlice({
     setLogout: (state, action) => {
       state.user = null;
       state.token = null;
+    },
+    setUserScore: (state, action) => {
+      state.userscore = action.payload.userscore;
     }
   },
 });
 
-export const { setLogin, setLogout } = authSlice.actions;
+export const { setLogin, setLogout, setUserScore } = authSlice.actions;
 export default authSlice.reducer;
