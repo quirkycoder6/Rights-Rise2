@@ -11,33 +11,35 @@ function Quiz() {
   const [clickedOption, setClickedOption] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const userId = useSelector((state) => state.user._id);
-  const statescore = useSelector((state) => state.userscore)
+  const statescore = useSelector((state) => state.userscore);
   const dispatch = useDispatch();
-  const [quizData, setQuizData] = useState([]);
+  const [quizData, setQuizData] = useState(null);
 
   useEffect(() => {
-    async function fetchQuizData() {
-      try {
-        const response = await fetch("http://localhost:3001/fetchquiz", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({userId}),
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setQuizData(data.games);
-          console.log(quizData)
-        } else {
-          throw new Error("Failed to fetch quiz data");
-        }
-      } catch (error) {
+    // Create an object with the userId and convert it to JSON
+    const requestBody = JSON.stringify({ userId });
+
+    // Configure the fetch request
+    const requestOptions = {
+      method: "POST", // Use POST method to send the userId in the request body
+      headers: {
+        "Content-Type": "application/json", // Set the content type to JSON
+      },
+      body: requestBody, // Include the JSON-encoded userId in the request body
+    };
+
+    // Fetch data from the API endpoint when the component mounts
+    fetch("http://localhost:3001/fetchquiz", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the quizData state variable with the fetched data
+        setQuizData(data);
+        console.log("Fetched quizData:", data);
+      })
+      .catch((error) => {
         console.error("Error fetching quiz data:", error);
-      }
-    }
-    fetchQuizData();
-  }, []);
+      });
+  }, []); // The empty dependency array ensures this effect runs only once when the component mounts
 
   const handleScore = async () => {
     try {
@@ -99,6 +101,7 @@ function Quiz() {
             <div className="question">
               <span id="question-number">{currentQuestion + 1}. </span>
               <span id="question-txt">
+                <button onClick={() => console.log(quizData)}>click</button>
                 {QuizData[currentQuestion].question}
               </span>
             </div>
