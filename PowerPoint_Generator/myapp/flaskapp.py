@@ -11,6 +11,7 @@ from utils.text_pp import parse_response, create_ppt
 from dotenv import load_dotenv
 import convertapi
 from pymongo import MongoClient
+import uuid
 
 load_dotenv()  # This loads the .env file
 
@@ -21,8 +22,8 @@ bcrypt = Bcrypt(app)
 db.init_app(app)
 
 client = MongoClient('mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb')
-db1 = client['pptxDB']
-collection = db1['pptx']
+db1 = client['pptDB']
+collection = db1['ppt']
 convertapi.api_secret = '4NPm2b4CQKdRkdKN'
 
 
@@ -107,18 +108,21 @@ def generate():
         print(assistant_response)
         slides_content = parse_response(assistant_response)
         create_ppt(slides_content, template_choice, presentation_title, presenter_name, insert_image)
-        # Write PPTX file to MongoDB
+        # Write PPTX file to MongoDB with a unique ID
         def write_to_mongodb(file_path):
+            global unique_id
+            unique_id = str(uuid.uuid4())  # Generate a unique ID
             with open(file_path, 'rb') as file:
                 pptx_content = file.read()
-                collection.insert_one({'file_name': file_path, 'content': pptx_content})
+                collection.insert_one({'_id': unique_id, 'file_name': file_path, 'content': pptx_content})
+
 
         # Read PPTX file from MongoDB and save to local system
-        def read_from_mongodb_save_locally(file_name, save_path):
-            pptx_data = collection.find_one({'file_name': file_name})
+        def read_from_mongodb_save_locally(unique_id, save_path):
+            pptx_data = collection.find_one({'_id': unique_id})
             if pptx_data:
                 pptx_content = pptx_data['content']
-                pptx_path = os.path.join(save_path, file_name)  # Specify save path
+                pptx_path = os.path.join(save_path, pptx_data['file_name'])  # Specify save path
                 
                 # Write pptx content to a temporary file
                 with open(pptx_path, 'wb') as tmp_pptx:
@@ -128,13 +132,14 @@ def generate():
             else:
                 return None
 
-            # Delete local PPTX file after inserting to MongoDB
+        # Delete local PPTX file after inserting to MongoDB
         def delete_local_file(file_path):
-                os.remove(file_path)
+            os.remove(file_path)
 
-            # Convert PPTX to PDF
+        # Convert PPTX to PDF
         def convert_pptx_to_pdf(input_path, output_path):
-                convertapi.convert('pdf', {'File': input_path}, from_format='pptx').save_files(output_path)
+            convertapi.convert('pdf', {'File': input_path}, from_format='pptx').save_files(output_path)
+
         # File paths
         pptx_file_path = '.\myapp\generated\generated_presentation.pptx'
         save_path = '.'
@@ -144,8 +149,9 @@ def generate():
         write_to_mongodb(pptx_file_path)
         delete_local_file(pptx_file_path)
 
-        # Read from MongoDB and save locally with a new name
-        loaded_pptx_path = read_from_mongodb_save_locally(pptx_file_path, save_path)
+        # Read from MongoDB with the unique ID and save locally with a new name
+        loaded_pptx_unique_id = unique_id  # Example unique ID
+        loaded_pptx_path = read_from_mongodb_save_locally(loaded_pptx_unique_id, save_path)
 
         if loaded_pptx_path:
             print(f'Successfully loaded PPTX from MongoDB: {loaded_pptx_path}')
@@ -160,9 +166,10 @@ def generate():
             print(f'Successfully converted PPTX to PDF: {pdf_output_path}')
 
             # Replace the previous PDF with the new one
-            os.replace(pdf_output_path, 'previous_presentation.pdf')  # Replace the previous PDF
+            os.replace('1.pdf',pdf_output_path)  # Replace the previous PDF
         else:
             print(f'Failed to convert PPTX to PDF')
+
 
     return render_template('generator.html', title='Generate')
 

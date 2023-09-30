@@ -62,7 +62,7 @@ const Gamess = () => {
               ${currentGame === 'wordscramble' ? 'bg-yellow-600' : 'bg-yellow-500'}
               ${currentGame === 'wordscramble' ? 'focus:shadow-none hover:bg-yellow-600' : 'focus:shadow-outline hover:bg-yellow-600'}`}
             >
-              Word Scramble Maker
+             Scramble Maker
             </button>
           </div>
           <div className="flex flex-col items-center gap-4">

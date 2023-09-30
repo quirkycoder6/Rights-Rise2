@@ -1,4 +1,4 @@
-/* MCQQuestionMaker.css
+MCQQuestionMaker.css
 
 .mcq-question-maker {
     font-family: Arial, sans-serif;
@@ -60,4 +60,13 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  } */
+  }
+  .container {
+    width: 440px;
+    border-radius: 7px;
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    margin-top : 120px;
+    margin-bottom: 20px;
+  }
