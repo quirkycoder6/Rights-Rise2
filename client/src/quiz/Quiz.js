@@ -14,6 +14,7 @@ function Quiz() {
   const statescore = useSelector((state) => state.userscore);
   const dispatch = useDispatch();
   const [quizData, setQuizData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Create an object with the userId and convert it to JSON
@@ -33,13 +34,19 @@ function Quiz() {
       .then((response) => response.json())
       .then((data) => {
         // Update the quizData state variable with the fetched data
-        setQuizData(data);
-        console.log("Fetched quizData:", data);
+        setQuizData(data.games);
+        console.log("Fetched quizData:", quizData);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching quiz data:", error);
       });
   }, []); // The empty dependency array ensures this effect runs only once when the component mounts
+
+  useEffect(() => {
+    // Log the updated quizData after it's set
+    console.log("Updated quizData:", quizData);
+  }, [quizData]); // This effect runs whenever quizData changes
 
   const handleScore = async () => {
     try {
@@ -96,13 +103,13 @@ function Quiz() {
             totalScore={QuizData.length}
             tryAgain={resetAll}
           />
-        ) : (
+        ) : loading ? <p>Loading...</p> : (
           <>
             <div className="question">
               <span id="question-number">{currentQuestion + 1}. </span>
               <span id="question-txt">
-                <button onClick={() => console.log(quizData)}>click</button>
-                {QuizData[currentQuestion].question}
+                {/* <button onClick={() => console.log(quizData)}>click</button> */}
+                {quizData[currentQuestion].question}
               </span>
             </div>
             <div className="option-container">
@@ -136,4 +143,3 @@ function Quiz() {
 }
 
 export default Quiz;
-
