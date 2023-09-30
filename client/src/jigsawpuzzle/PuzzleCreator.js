@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { JigsawPuzzle } from 'react-jigsaw-puzzle';
 import 'react-jigsaw-puzzle/lib/jigsaw-puzzle.css';
+import './puzzle.css';
 
 function PuzzleCreator() {
   const [imageSrc, setImageSrc] = useState('');
@@ -16,7 +17,7 @@ function PuzzleCreator() {
   };
 
   return (
-    <div>
+    <div className='container1'>
       <h2>Create a Jigsaw Puzzle</h2>
       <input type="file" accept="image/*" onChange={handleImageUpload} />
       {puzzleCreated && (

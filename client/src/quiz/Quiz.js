@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { QuizData } from "./QuizData";
 import QuizResult from "./QuizResult";
 import "./quiz.css";
@@ -11,8 +11,43 @@ function Quiz() {
   const [clickedOption, setClickedOption] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const userId = useSelector((state) => state.user._id);
-  const statescore = useSelector((state) => state.userscore)
+  const statescore = useSelector((state) => state.userscore);
   const dispatch = useDispatch();
+  const [quizData, setQuizData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Create an object with the userId and convert it to JSON
+    const requestBody = JSON.stringify({ userId });
+
+    // Configure the fetch request
+    const requestOptions = {
+      method: "POST", // Use POST method to send the userId in the request body
+      headers: {
+        "Content-Type": "application/json", // Set the content type to JSON
+      },
+      body: requestBody, // Include the JSON-encoded userId in the request body
+    };
+
+    // Fetch data from the API endpoint when the component mounts
+    fetch("http://localhost:3001/fetchquiz", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the quizData state variable with the fetched data
+        setQuizData(data.games);
+        console.log("Fetched quizData:", quizData);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching quiz data:", error);
+      });
+  }, []); // The empty dependency array ensures this effect runs only once when the component mounts
+
+  useEffect(() => {
+    // Log the updated quizData after it's set
+    console.log("Updated quizData:", quizData);
+  }, [quizData]); // This effect runs whenever quizData changes
+
   const handleScore = async () => {
     try {
       const response = await fetch("http://localhost:3001/score", {
@@ -68,12 +103,13 @@ function Quiz() {
             totalScore={QuizData.length}
             tryAgain={resetAll}
           />
-        ) : (
+        ) : loading ? <p>Loading...</p> : (
           <>
             <div className="question">
               <span id="question-number">{currentQuestion + 1}. </span>
               <span id="question-txt">
-                {QuizData[currentQuestion].question}
+                {/* <button onClick={() => console.log(quizData)}>click</button> */}
+                {quizData[currentQuestion].question}
               </span>
             </div>
             <div className="option-container">

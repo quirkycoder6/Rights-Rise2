@@ -109,14 +109,28 @@ app.post("/score", async (req, res) => {
 app.post('/quiz', async (req, res) => {
   try {
     const questionData = req.body;
+    const {userId} = req.body;
     const newQuestion = new Quiz(questionData);
     await newQuestion.save();
-    res.status(200).json({ message: 'Question created successfully' });
+    const games = await Quiz.find({ userId });
+    res.status(200).json({ games });
   } catch (error) {
     console.error('Error creating question:', error);
     res.status(500).json({ message: 'Error creating question' });
   }
 });
+
+app.post('/fetchquiz', async (req, res) => {
+  try {
+    const {userId} = req.body;
+    const games = await Quiz.find({ userId });
+    res.status(200).json({ games });
+  } catch (error) {
+    console.error('Error creating question:', error);
+    res.status(500).json({ message: 'Error creating question' });
+  }
+});
+
 
 
 /* --------------------------------- SCORING -------------------------------- */

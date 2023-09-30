@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const quizQuestion = new mongoose.Schema({
+  userId: String,
   question: String,
   option1: String,
   option2: String,
