@@ -51,6 +51,7 @@ const MCQQuestionMaker = () => {
   };
 
   return (
+    <div className='container'>
     <div className="mcq-question-maker">
       <h1>Custom MCQ Question Maker</h1>
       <form id="mcqForm" onSubmit={handleSubmit}>
@@ -130,7 +131,7 @@ const MCQQuestionMaker = () => {
         <input type="submit" value="Create Question" className="submit-button" />
       </form>
       <p className="submission-message">{submissionMessage}</p>
-    </div>
+    </div></div>
   );
 };
 
