@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { quizData } from "./quizData";
+import { defaultQuizData } from "./QuizData";
 import QuizResult from "./QuizResult";
 import "./quiz.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,36 +17,36 @@ function Quiz() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Create an object with the userId and convert it to JSON
     const requestBody = JSON.stringify({ userId });
-
-    // Configure the fetch request
     const requestOptions = {
-      method: "POST", // Use POST method to send the userId in the request body
+      method: "POST",
       headers: {
-        "Content-Type": "application/json", // Set the content type to JSON
+        "Content-Type": "application/json",
       },
-      body: requestBody, // Include the JSON-encoded userId in the request body
+      body: requestBody,
     };
 
-    // Fetch data from the API endpoint when the component mounts
     fetch("http://localhost:3001/fetchquiz", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        // Update the quizData state variable with the fetched data
-        setQuizData(data.games);
-        console.log("Fetched quizData:", quizData);
-        setLoading(false);
+        if (data.games.length > 0) {
+          setQuizData(data.games);
+          console.log("Fetched quizData:", quizData);
+          setLoading(false);
+        } else {
+          console.log("fetched games empty");
+          setQuizData(defaultQuizData);
+          setLoading(false);
+        }
       })
       .catch((error) => {
         console.error("Error fetching quiz data:", error);
       });
-  }, []); // The empty dependency array ensures this effect runs only once when the component mounts
+  }, []);
 
   useEffect(() => {
-    // Log the updated quizData after it's set
     console.log("Updated quizData:", quizData);
-  }, [quizData]); // This effect runs whenever quizData changes
+  }, [quizData]);
 
   const handleScore = async () => {
     try {

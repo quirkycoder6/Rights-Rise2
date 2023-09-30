@@ -7,7 +7,7 @@ const quizQuestion = new mongoose.Schema({
   option2: String,
   option3: String,
   option4: String,
-  correctOption: String,
+  correctOption: Number,
 });
 
 const Quiz = mongoose.model("quizQuestion", quizQuestion);
