@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { QuizData } from "./QuizData";
+// import { quizData } from "./quizData";
 import QuizResult from "./QuizResult";
 import "./quiz.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -75,7 +75,7 @@ function Quiz() {
 
   const changeQuestion = () => {
     updateScore();
-    if (currentQuestion < QuizData.length - 1) {
+    if (currentQuestion < quizData.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setClickedOption(0);
     } else {
@@ -84,7 +84,7 @@ function Quiz() {
     }
   };
   const updateScore = () => {
-    if (clickedOption === QuizData[currentQuestion].answer) {
+    if (clickedOption === quizData[currentQuestion].correctOption) {
       setScore(score + 1);
     }
   };
@@ -100,10 +100,12 @@ function Quiz() {
         {showResult ? (
           <QuizResult
             score={score}
-            totalScore={QuizData.length}
+            totalScore={quizData.length}
             tryAgain={resetAll}
           />
-        ) : loading ? <p>Loading...</p> : (
+        ) : loading ? (
+          <p>Loading...</p>
+        ) : (
           <>
             <div className="question">
               <span id="question-number">{currentQuestion + 1}. </span>
@@ -113,20 +115,46 @@ function Quiz() {
               </span>
             </div>
             <div className="option-container">
-              {QuizData[currentQuestion].options.map((option, i) => {
-                return (
-                  <button
-                    // className="option-btn"
-                    className={`option-btn ${
-                      clickedOption === i + 1 ? "checked" : null
-                    }`}
-                    key={i}
-                    onClick={() => setClickedOption(i + 1)}
-                  >
-                    {option}
-                  </button>
-                );
-              })}
+              <button
+                // className="option-btn"
+                className={`option-btn ${
+                  clickedOption === 1 ? "checked" : null
+                }`}
+                key={1}
+                onClick={() => setClickedOption(1)}
+              >
+                {quizData[currentQuestion].option1}
+              </button>
+              <button
+                // className="option-btn"
+                className={`option-btn ${
+                  clickedOption === 2 ? "checked" : null
+                }`}
+                key={2}
+                onClick={() => setClickedOption(2)}
+              >
+                {quizData[currentQuestion].option2}
+              </button>
+              <button
+                // className="option-btn"
+                className={`option-btn ${
+                  clickedOption === 3 ? "checked" : null
+                }`}
+                key={3}
+                onClick={() => setClickedOption(3)}
+              >
+                {quizData[currentQuestion].option3}
+              </button>
+              <button
+                // className="option-btn"
+                className={`option-btn ${
+                  clickedOption === 4 ? "checked" : null
+                }`}
+                key={4}
+                onClick={() => setClickedOption(4)}
+              >
+                {quizData[currentQuestion].option4}
+              </button>
             </div>
             <input
               type="button"
