@@ -137,7 +137,7 @@ def generate():
                 convertapi.convert('pdf', {'File': input_path}, from_format='pptx').save_files(output_path)
         # File paths
         pptx_file_path = '.\myapp\generated\generated_presentation.pptx'
-        save_path = '.'
+        save_path = '.  '
         pdf_output_path = '1.pdf'  # Define the PDF output path
 
         # Write to MongoDB and delete local file
