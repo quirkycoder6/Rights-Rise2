@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Leftbar from '../components/leftbar';
 import Dailyquest from "../components/dailyquest";
 import Navbar from "../components/navbar";
 
 const LeaderBoard = () => {
+
+  const [board, setBoard] = useState(null);
+
+useEffect(() => {
+  async function leaderboardPoints() {
+    const response = await fetch("http://localhost:3001/api/leaderboard", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      setBoard(data);
+      console.log(data);
+    } else {
+      const data = await response.json();
+      alert(data.error);
+    }
+  }
+
+  leaderboardPoints();
+}, []);
+
   return (
     <div>
       <div className="flex-col flex">
@@ -14,25 +38,10 @@ const LeaderBoard = () => {
           <div>
             <Leftbar />
           </div>
-          <div className="flex justify-between flex-grow">
-            <div className="bg-white p-4 rounded shadow-md">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Name</th>
-                    <th>Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Player 1</td>
-                    <td>1000</td>
-                  </tr>
-                  {/* Add more rows as needed */}
-                </tbody>
-              </table>
+          <div className="flex  flex-grow justify-center items-center">
+              <div id="profile" className="flex justify-center items-center">
+                  {board ? <Items data={board} /> : <p>Loading...</p>}
+              </div>
             </div>
             <div className="flex flex-col gap-5">
               <Dailyquest />
@@ -47,6 +56,36 @@ const LeaderBoard = () => {
           </div>
         </div>
       </div>
+    // </div>
+  );
+}
+
+function Items({ data }) {
+  return (
+    <div className='flex flex-col items-center justify-center mb-12'>
+    <div className=' mb-4'><h1 className='text-[31px]'>LeaderBoard</h1></div>
+    <div>
+    <table className="max-w-md bg-white shadow-md rounded-lg overflow-hidden">
+      <thead>
+        <tr>
+          <th className="py-2 px-4 bg-gray-200 font-semibold text-gray-700">
+            Name
+          </th>
+          <th className="py-2 px-4 bg-gray-200 font-semibold text-gray-700">
+            Points
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((value, index) => (
+          <tr  key={index}>
+            <td className="py-2 px-4 border-b border-gray-200 text-center w-72">{value.username}</td>
+            <td className="py-2 px-4 border-b border-gray-200 text-center w-72">{value.score}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    </div>
     </div>
   );
 }

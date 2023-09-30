@@ -150,6 +150,22 @@ app.post('/quiz', async (req, res) => {
   }
 });
 
+// Leaderboard
+
+app.get('/api/leaderboard', async(req, res) => {
+  try {
+    const users = await User.find().sort({ score: -1 }).exec();
+    const leaderboard = users.map(user => ({
+      username: user.name,
+      score: user.score,
+    }));
+    res.status(209).json(leaderboard);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
 
 // Video Upload and Fetch
 

@@ -68,27 +68,27 @@ function App() {
           />
           <Route
             path="/lawquest/module/jigsaw"
-            element={isAuth ? < Jigsaw/> : <Navigate to="/" />}
+            element={isAuth ? <Jigsaw/> : <Navigate to="/" />}
           />
           <Route
             path="/lawquest/module/wordscramble"
-            element={isAuth ? < WordScrambleGame/> : <Navigate to="/" />}
+            element={isAuth ? <WordScrambleGame/> : <Navigate to="/" />}
           />
           <Route
             path="/lawquest/module/wordscramblemaker"
-            element={isAuth ? < WordScrambleMaker/> : <Navigate to="/" />}
+            element={isAuth ? <WordScrambleMaker/> : <Navigate to="/" />}
           />
           <Route
             path="/lawquest/module/numberguessmaker"
-            element={isAuth ? < NumberGuessMaker/> : <Navigate to="/" />}
+            element={isAuth ? <NumberGuessMaker/> : <Navigate to="/" />}
           />
           <Route
             path="/lawquest/module/jigsawmaker"
-            element={isAuth ? < Main/> : <Navigate to="/" />}
+            element={isAuth ? <Main/> : <Navigate to="/" />}
           />
           <Route
             path="/lawquest/module/quizmaker"
-            element={isAuth ? < MCQQuestionMaker/> : <Navigate to="/" />}
+            element={isAuth ? <MCQQuestionMaker/> : <Navigate to="/" />}
           />
         </Routes>
       </BrowserRouter>

@@ -33,15 +33,16 @@ const Landing = () => {
               <h1
                 // href="/register"
                 className="w-full rounded-2xl border-b-4 border-yellow-700 bg-yellow-600 px-10 py-3 text-center font-bold uppercase transition hover:border-yellow-600 hover:bg-yellow-500 md:min-w-[320px]"
+                onClick={() => navigate("/register")}
               >
                 Get started
               </h1>
-              <button
+              {/* <button
                 className="w-full rounded-2xl border-2 border-b-4 border-[#042c60] bg-[#235390] px-8 py-3 font-bold uppercase transition hover:bg-[#204b82] md:min-w-[320px]"
                 onClick={() => navigate("/register")}
               >
                 I already have an account
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
