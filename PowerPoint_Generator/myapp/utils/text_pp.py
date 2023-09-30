@@ -9,11 +9,10 @@ from pptx.util import Inches
 from urllib.parse import quote_plus
 from dotenv import load_dotenv
 from reportlab.pdfgen import canvas
-import aspose.slides as slides
 from pymongo import MongoClient
 
 
-dir_path = '.\myapp\static\presentations'
+dir_path = '/PowerPoint_Generator/myapp/static/presentations'
 # convertapi.api_secret = '4NPm2b4CQKdRkdKN'
 load_dotenv()
 API_KEY = os.getenv('PEXELS_API_KEY')

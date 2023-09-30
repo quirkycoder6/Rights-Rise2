@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import './makerstyle.css';
+import { useSelector } from 'react-redux';
 
 const MCQQuestionMaker = () => {
+  const userId = useSelector((state) => state.user._id);
+
   const [formData, setFormData] = useState({
+    userId,
     question: '',
     option1: '',
     option2: '',
@@ -10,7 +14,7 @@ const MCQQuestionMaker = () => {
     option4: '',
     correctOption: '',
   });
-
+  
   const [submissionMessage, setSubmissionMessage] = useState('');
 
   const handleInputChange = (event) => {
@@ -29,10 +33,12 @@ const MCQQuestionMaker = () => {
         },
         body: JSON.stringify(formData),
       });
-
+      const data = await response.json();
       if (response.ok) {
+        console.log(data);
         setSubmissionMessage('Question created successfully');
         setFormData({
+          userId,
           question: '',
           option1: '',
           option2: '',
