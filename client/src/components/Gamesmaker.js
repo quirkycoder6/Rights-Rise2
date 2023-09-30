@@ -25,13 +25,13 @@ const Gamess = () => {
       <div className="flex justify-around gap-3 mt-7 px-5">
 
 
-        <div>
+        {/* <div>
         <button
         onClick={goBack}
         className="w-12 h-12  m-2 text-lg transition-colors duration-150 rounded-full text-blue-400 border-blue-500 border-2 bg-blue-100 focus:shadow-outline">
         &lt; 
       </button>
-        </div>
+        </div> */}
 
 
         <div className="flex-grow md:flex md:flex-row justify-center sm:gap-3">

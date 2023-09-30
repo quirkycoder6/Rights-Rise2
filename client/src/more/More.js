@@ -9,7 +9,7 @@ const More = () => {
       <Leftbar/>
     </div>
     <div>
-      <div className='pt-20'>
+      <div className='pt-18'>
       <UploadVideo/>
       </div>
       <div>

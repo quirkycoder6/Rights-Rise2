@@ -37,10 +37,15 @@ function UploadVideo() {
   };
 
   return (
-    <div className='container'>
-      <input type="file" accept="video/*" onChange={handleFileChange} /> <br></br>
-      <button onClick={handleUpload}>Upload</button>
+    <div className='container min-h-fit'>
+      <h2>Add your Video</h2>
+      <div className='ml-32'>
+      <input type="file" accept="video/*" onChange={handleFileChange} />
+      </div> <br></br>
+      <button onClick={handleUpload} className="bg-blue-700 p-3 text-white rounded-lg">Upload</button>
+      
       {message && <p className="error">{message}</p>}
+      
     </div>
     
   );
