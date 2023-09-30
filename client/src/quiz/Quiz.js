@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { QuizData } from "./QuizData";
 import QuizResult from "./QuizResult";
 import "./quiz.css";
@@ -13,6 +13,32 @@ function Quiz() {
   const userId = useSelector((state) => state.user._id);
   const statescore = useSelector((state) => state.userscore)
   const dispatch = useDispatch();
+  const [quizData, setQuizData] = useState([]);
+
+  useEffect(() => {
+    async function fetchQuizData() {
+      try {
+        const response = await fetch("http://localhost:3001/fetchquiz", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({userId}),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setQuizData(data.games);
+          console.log(quizData)
+        } else {
+          throw new Error("Failed to fetch quiz data");
+        }
+      } catch (error) {
+        console.error("Error fetching quiz data:", error);
+      }
+    }
+    fetchQuizData();
+  }, []);
+
   const handleScore = async () => {
     try {
       const response = await fetch("http://localhost:3001/score", {
@@ -107,3 +133,4 @@ function Quiz() {
 }
 
 export default Quiz;
+

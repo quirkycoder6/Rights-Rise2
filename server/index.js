@@ -120,6 +120,18 @@ app.post('/quiz', async (req, res) => {
   }
 });
 
+app.post('/fetchquiz', async (req, res) => {
+  try {
+    const {userId} = req.body;
+    const games = await Quiz.find({ userId });
+    res.status(200).json({ games });
+  } catch (error) {
+    console.error('Error creating question:', error);
+    res.status(500).json({ message: 'Error creating question' });
+  }
+});
+
+
 
 /* --------------------------------- SCORING -------------------------------- */
 
