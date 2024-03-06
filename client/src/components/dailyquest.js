@@ -1,9 +1,9 @@
 const Dailyquest = () => {
   return (
-    <article class="sm:flex hidden flex-col gap-4 rounded-3xl border-2 bg-white border-gray-200 p-5 font-bold text-gray-700">
+    <article class="sm:flex hidden flex-col gap-4 rounded-3xl border-2 bg-white border-gray-200 p-1 font-bold text-gray-700">
       <h2 class="text-xl">Daily Quests</h2>
-      <div class="flex items-center gap-4">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+      <div class="flex items-center gap-2">
+        <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
@@ -23,17 +23,17 @@ const Dailyquest = () => {
           ></path>
         </svg>
         <div class="flex flex-col gap-2">
-          <h3>Earn 10 XP</h3>
+          <h3 class="text-center" style={{marginTop: "-5dvh"}}>Earn 10 XP</h3>
           <div class="flex items-center">
-            <div class="relative h-5 w-32 rd:w-42 lg:w-52 rounded-l-full bg-gray-200">
-              <div class="relative h-full rounded-l-full bg-yellow-400 ">
-                <div class="absolute left-2 right-0 top-1 h-2 rounded-l-full bg-yellow-300"></div>
+            <div class="relative h-5 w-32 rd:w-42 lg:w-52 rounded-l-full bg-gray-200" style={{borderRadius: "12px", left: "-1dvw"}}>
+              <div class="relative h-full w-full rounded-1-full bg-yellow-400" style={{borderRadius: "12px"}}>
+                <div class="absolute left-0 right-0 top-1 h-3 rounded-l-full bg-yellow-300"></div>
               </div>
               <div class="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center text-sm text-gray-400">
                 0 / 10
               </div>
             </div>
-            <svg width="38" height="40" viewBox="0 0 38 40" fill="none">
+            <svg class="mr-2" width="28" height="40" viewBox="0 5 38 40" fill="none">
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"

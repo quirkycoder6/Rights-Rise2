@@ -17,6 +17,8 @@ import WordScrambleMaker from "./wordScramble/WordScrambleMaker";
 import NumberGuessMaker from "./numberguess/NumberGuessMaker";
 import Main from "./jigsawpuzzle/Main";
 import MCQQuestionMaker from "./quiz/QuizMaker";
+import WordGuessGame from "./components/wordguess/wordguess";
+import Legalabc from "./components/legalabc/legalabc";
 
 function App() {
   const isAuth =Boolean(useSelector((state) => state.token));
@@ -33,6 +35,14 @@ function App() {
           <Route
             path="/lawquest/profile"
             element={isAuth ? <UserProfile /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/lawquest/puzzles"
+            element={isAuth ? <WordGuessGame /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/lawquest/legal"
+            element={isAuth ? <Legalabc /> : <Navigate to="/" />}
           />
           <Route
             path="/lawquest/leaderboard"

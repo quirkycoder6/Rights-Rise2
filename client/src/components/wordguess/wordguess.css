@@ -1,0 +1,18 @@
+.wordguess-container {
+    position: relative;
+    isolation: isolate;
+    background-color: lightcyan;
+    width: 100vdw;
+    height: 100dvh;
+    margin-top: -11dvh;
+}
+
+.wordguess-container .wordguess-inputbox {
+    margin-left: 1dvw;
+    margin-right: 1dvw;
+}
+
+.wordguess-final-submit {
+    border-radius: 8px;
+    cursor: pointer;
+}

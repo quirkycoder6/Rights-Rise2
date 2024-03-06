@@ -85,26 +85,29 @@ const RegisterPage = () => {
     <div>
       <header className=" h-fit bg-blue px-10 font-bold text-white">
         <div className="py-2 flex items-center bg-blue-900 w-full px-4 fixed top-0 left-0 right-0 mx-auto justify-between">
-          <h1 className="text-base md:text-4xl" href="/">
-            Law Quests
+          <h1 className="text-base font-serif md:text-4xl mx-auto" href="/">
+            Rights Rise
           </h1>
         </div>
       </header>
       <div
-        className="flex w-full flex-col min-h-screen bg-[#235390] pt-2 items-center justify-center md:flex-row mx-auto"
+        className="flex w-full flex-col min-h-screen bg-[#235390] pt-2 items-center justify-start md:flex-row mx-auto"
         style={{ backgroundImage: "url(bg-snow.svg)" }}
       >
-        <img src={loginImage} className="h-fit w-2/3 md:w-1/2 lg:w-[600px]" />
-        <div class="flex md:w-1/2 justify-center items-center mt-7">
-          <form
+        <img src={loginImage} className="h-fit w-2/3 md:w-1/2 left-0 lg:w-[420px]" />
+        <div class="flex md:w-8/12 justify-center items-center mt-8">
+          <p className="mb-6 mt-32 max-w-[480px] text-white text-xl font-serif md:mb-12">
+          Welcome to the gateway of knowledge and empowerment! Begin your journey by signing up or logging into Rights Rise. Unlock a world of interactive learning, engaging games, and community building tailored for children aged 8 to 16.
+          </p>
+          <form class="mr-10 mt-16"
             action={loginpage ? "/auth/login" : "/auth/signup"}
             method={loginpage ? "GET" : "POST"}
             onSubmit={loginpage ? handleLogin : handleSignup}
           >
-            <h1 class="text-white text-2xl font-bold md:text-4xl mb-1">
-              Unlock Journey.
+            <h1 class="text-white text-1xl font-bold md:text-3xl mb-1">
+              Unlock your Journey...
             </h1>
-            <p class="lg:text-xl text-base font-normal text-white  mb-4">
+            <p class="lg:text-l text-base font-normal text-white  mb-4">
               Welcome Aboard!
             </p>
             {loginpage ? (
